@@ -14,7 +14,7 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
   > Separation into interface and implementation files is possible but it is obsolete
 
-:white_check_mark: Faster build time
+:white_check_mark: Better compilation times
 
   > Modules are processed only once. Compare this with M headers which are included in N translation units.
   > The combinatorial explosion means, that the header has to be parsed M*N times.
