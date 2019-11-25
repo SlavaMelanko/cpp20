@@ -27,9 +27,9 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
 :white_check_mark: Modules explicitely state what should be exported (e.g. functions, classes, ...)
 
-:white_check_mark: Preprocessor macros have no effect on modules 
+:white_check_mark: Preprocessor usage elimination
 
-:white_check_mark: Order of module imports in not important
+:white_check_mark: The order of `import` statements will not matter
 
 ```cpp
 // cppcon.cpp
