@@ -12,13 +12,13 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
 :white_check_mark: No header files
 
-:white_check_mark: Separation into interface and implementation files is possbile but not needed
-
-:white_check_mark: Modules explicitely state what should be exported (e.g. functions, classes, ...)
-
 :white_check_mark: No need for include guard
 
 :white_check_mark: No need to invent unique names, same names in multiple modules will not clash
+
+:white_check_mark: Separation into interface and implementation files is possbile but it is obsolete
+
+:white_check_mark: Modules explicitely state what should be exported (e.g. functions, classes, ...)
 
 :white_check_mark: Modules are processed only once, therefore **faster build time**
 
