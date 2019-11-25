@@ -14,6 +14,11 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
   > Separation into interface and implementation files is possible but it is obsolete
 
+:white_check_mark: Faster build time
+
+  > Modules are processed only once. Compare this with M headers which are included in N translation units.
+  > The combinatorial explosion means, that the header has to be parsed M*N times.
+
 :white_check_mark: No need for include guard
 
 :white_check_mark: No need to invent unique names
@@ -21,11 +26,6 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
   > Same names in multiple modules will not clash
 
 :white_check_mark: Modules explicitely state what should be exported (e.g. functions, classes, ...)
-
-:white_check_mark: Faster build time
-
-  > Modules are processed only once. Compare this with M headers which are included in N translation units.
-  > The combinatorial explosion means, that the header has to be parsed M*N times.
 
 :white_check_mark: Preprocessor macros have no effect on modules 
 
@@ -49,6 +49,8 @@ export auto GetWelcome() {
 
 // main.cpp
 import cppcon;
+
+import <iostream>;
 
 int main() {
   std::cout << CppCon::GetWelcome();
