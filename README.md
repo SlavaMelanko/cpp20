@@ -10,21 +10,26 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 <a name="modules"></a>
 ## Modules
 
-:white_check_mark: No header files
+:white_check_mark: No need of header files
+
+  > Separation into interface and implementation files is possible but it is obsolete
 
 :white_check_mark: No need for include guard
 
-:white_check_mark: No need to invent unique names, same names in multiple modules will not clash
+:white_check_mark: No need to invent unique names
 
-:white_check_mark: Separation into interface and implementation files is possbile but it is obsolete
+  > Same names in multiple modules will not clash
 
 :white_check_mark: Modules explicitely state what should be exported (e.g. functions, classes, ...)
 
-:white_check_mark: Modules are processed only once, therefore **faster build time**
+:white_check_mark: Faster build time
+
+  > Modules are processed only once. Compare this with M headers which are included in N translation units.
+  > The combinatorial explosion means, that the header has to be parsed M*N times.
 
 :white_check_mark: Preprocessor macros have no effect on modules 
 
-:white_check_mark: Order of module inports in not important
+:white_check_mark: Order of module imports in not important
 
 ```cpp
 // cppcon.cpp
