@@ -35,6 +35,8 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
 - The order of `import` statements will not matter
 
+:computer: Example:
+
 ```cpp
 // cppcon.cpp/.cppm/.mpp
 export module cppcon;
