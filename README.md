@@ -10,6 +10,8 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 <a name="modules"></a>
 ## Modules
 
+:white_check_mark: A way to organize, encapsulate, and isolate your code
+
 :white_check_mark: No need of header files
 
   > Separation into interface and implementation files is possible but it is obsolete
@@ -32,7 +34,7 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 :white_check_mark: The order of `import` statements will not matter
 
 ```cpp
-// cppcon.cpp
+// cppcon.cpp(m)
 export module cppcon;
 
 namespace CppCon {
@@ -47,7 +49,7 @@ export auto GetWelcome() {
 
 } // namespace CppCon
 
-// main.cpp
+// main.cpp(m)
 import cppcon;
 
 import <iostream>;
@@ -65,6 +67,12 @@ import <iostream>
 
 - Implicitely turns the `iostream` header into module
 - Improves build throughput, as `iostream` will then processed only once
+
+:mortar_board: Additional links:
+
+- [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
+
+- [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
 
 <a name="ranges"></a>
 ## Ranges
