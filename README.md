@@ -10,7 +10,7 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 <a name="modules"></a>
 ## Modules
 
-:white_check_mark: Advantages:
+:white_check_mark: **Advantages**:
 
 - A way to organize, encapsulate, and isolate your code
 
@@ -35,7 +35,7 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
 - The order of `import` statements will not matter
 
-:computer: Example:
+:computer: **Example**:
 
 ```cpp
 // cppcon.cpp/.cppm/.mpp
@@ -72,7 +72,7 @@ import <iostream>
 - Implicitely turns the `iostream` header into module
 - Improves build throughput, as `iostream` will then processed only once
 
-:mortar_board: Additional links:
+:mortar_board: **Additional links**:
 
 - [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
 
