@@ -107,16 +107,25 @@ std::ranges::sort(data) // now
 ```
 
 Based on 3 core components:
-- **Views**: range adaptors: lazily evaluated, non-owning, non-mutating
+- **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements
 ```cpp
 std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 auto result = data | std::viewes::remove_if([](int i) { return i % 2 == 1; })
                    | std::viewes::transform([](int i) { return std::to_string(i) });
 ```
 > result == {"2", "4", "6", "8", "10"}
+```cpp
+std::vector<int> data{0, 1, 2, 3, 4, 5, 6};
+auto evens = data | std::views::filter([](int i) { return i % 2 == 0; });
+```
+> evens == {0, 2, 4, 6}
 - **Actions**: eagerly evaluated, mutting
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
 auto result = data | actions::sort | actions::unique
 ```
 - **Algorithms**: all Standard Library algorithms accepting ranges instead of iterator pairs
+
+:mortar_board: **Additional links**:
+
+- [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
