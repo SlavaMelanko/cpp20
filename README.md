@@ -94,4 +94,27 @@ import <iostream>
 <a name="ranges"></a>
 ## Ranges
 
+:zap: Range is an object referring to a sequence/range of elements.
+Similar to begin/end iterators but not replace them.
+It provides a nicer and easier to read syntax, e.g.
 
+```cpp
+std::vector<int> data{1, 2, 3, 4, 5};
+std::sort(std::begin(data), std::end(data)); // before
+std::sort(data) // now
+```
+
+Based on 3 core components:
+- **Views**: range adaptors: lazily evaluated, non-owning, non-mutating
+```cpp
+std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+auto result = data | viewes::remove_if([](int i) { return i % 2 == 1; })
+                   | viewes::transform([](int i) { return std::to_string(i) });
+// result == {"2", "4", "6", "8", "10"}
+```
+- **Actions**: eagerly evaluated, mutting
+```cpp
+std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
+auto result = data | actions::sort | actions::unique
+```
+- **Algorithms**: all Standard Library algorithms accepting ranges instead of iterator pairs
