@@ -13,7 +13,6 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 :white_check_mark: **Advantages**:
 
 - A way to organize, encapsulate, and isolate your code
-
 - No need of header files
 
   > Separation into interface and implementation files is possible but it is obsolete
