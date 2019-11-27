@@ -112,8 +112,8 @@ Based on 3 core components:
 std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 auto result = data | viewes::remove_if([](int i) { return i % 2 == 1; })
                    | viewes::transform([](int i) { return std::to_string(i) });
-// result == {"2", "4", "6", "8", "10"}
 ```
+> result == {"2", "4", "6", "8", "10"}
 - **Actions**: eagerly evaluated, mutting
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
