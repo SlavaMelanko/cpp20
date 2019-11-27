@@ -86,10 +86,11 @@ import <iostream>;
 
 :mortar_board: **Additional links**:
 
-- [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
-- [CppCon 2019: Boris Kolpackov “Practical C++ Modules”](https://youtu.be/szHV6RdQdg8)
-- [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
-- [Core C++ 2019 :: Bryce Adelstein :: Modules are Coming](https://youtu.be/bDTm6y6fNSU)
+- :movie_camera:
+  - [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
+  - [CppCon 2019: Boris Kolpackov “Practical C++ Modules”](https://youtu.be/szHV6RdQdg8)
+  - [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
+  - [Core C++ 2019 :: Bryce Adelstein :: Modules are Coming](https://youtu.be/bDTm6y6fNSU)
 
 <a name="ranges"></a>
 ## Ranges
@@ -128,4 +129,8 @@ auto result = data | actions::sort | actions::unique
 
 :mortar_board: **Additional links**:
 
-- [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
+- :newspaper:
+  - [Range-v3: User Manual](https://ericniebler.github.io/range-v3/)
+
+- :movie_camera:
+  - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
