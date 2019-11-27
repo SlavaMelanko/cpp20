@@ -35,7 +35,7 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
 - The order of `import` statements will not matter
 
-:computer: **Example**:
+:computer: **Example** (not tested yet):
 
 ```cpp
 // cppcon.cpp/.cppm/.mpp
@@ -72,11 +72,24 @@ import <iostream>
 - Implicitely turns the `iostream` header into module
 - Improves build throughput, as `iostream` will then processed only once
 
+**Structure**:
+
+| Module (top to bottom) |
+| :---: |
+| `module;` |
+| preprocessor derictives only, e.g `#include <cassert>` |
+| `export module name;` |
+| `import ...;` |
+| `...` |
+| `module : private;` |
+| `...` |
+
 :mortar_board: **Additional links**:
 
 - [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
 - [CppCon 2019: Boris Kolpackov “Practical C++ Modules”](https://youtu.be/szHV6RdQdg8)
 - [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
+- [Core C++ 2019 :: Bryce Adelstein :: Modules are Coming](https://youtu.be/bDTm6y6fNSU)
 
 <a name="ranges"></a>
 ## Ranges
