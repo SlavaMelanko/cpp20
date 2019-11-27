@@ -35,7 +35,7 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
 - The order of `import` statements will not matter
 
-:computer: **Example** (not tested yet):
+:mag_right: **Example** (:warning: not tested yet):
 
 ```cpp
 // cppcon.cpp/.cppm/.mpp
@@ -63,7 +63,7 @@ int main() {
 }
 ```
 
-:fire: You can import header files, e.g.
+:bulb: You can import header files, e.g.
 
 ```cpp
 import <iostream>
@@ -72,7 +72,7 @@ import <iostream>
 - Implicitely turns the `iostream` header into module
 - Improves build throughput, as `iostream` will then processed only once
 
-**Structure**:
+:scroll: **Structure**:
 
 | Module (top to bottom) |
 | :---: |
