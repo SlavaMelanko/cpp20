@@ -66,7 +66,7 @@ int main() {
 :bulb: You can import header files, e.g.
 
 ```cpp
-import <iostream>
+import <iostream>;
 ```
 
 - Implicitely turns the `iostream` header into module
