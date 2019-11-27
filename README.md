@@ -94,9 +94,11 @@ import <iostream>
 <a name="ranges"></a>
 ## Ranges
 
-:zap: Range is an object referring to a sequence/range of elements.
+:zap: Range is an object referring to a sequence of elements.
 Similar to begin/end iterators but not replace them.
-It provides a nicer and easier to read syntax, e.g.
+It provides a nicer and easier to read syntax.
+
+:mag_right: **Example** (:warning: not tested yet):
 
 ```cpp
 std::vector<int> data{1, 2, 3, 4, 5};
