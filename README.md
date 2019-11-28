@@ -109,18 +109,21 @@ std::ranges::sort(data) // now
 
 Based on 3 core components:
 - **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements, with constant time for copying and moving
+
 ```cpp
 std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 auto result = data | std::viewes::remove_if([](int i) { return i % 2 == 1; })
                    | std::viewes::transform([](int i) { return std::to_string(i) });
 ```
 > result == {"2", "4", "6", "8", "10"}
+
 ```cpp
 std::vector<int> data{0, 1, 2, 3, 4, 5, 6};
 auto evens = data | std::views::filter([](int i) { return i % 2 == 0; });
 ```
 > evens == {0, 2, 4, 6}
-- **Actions**: eagerly evaluated, mutting
+
+- **Actions** are ranges which are eagerly evaluated, mutating the data, and can be composed as views
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
 auto result = data | std::actions::sort | std::actions::unique;
@@ -132,7 +135,7 @@ std::vector<int> data{4, 3, 2, 1, 0};
 data |= std::actions::sort;
 ```
 > data == {0, 1, 2, 3, 4}
-- **Algorithms**: all Standard Library algorithms accepting ranges instead of iterator pairs
+- **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
 
 :bulb: Projection
 
