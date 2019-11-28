@@ -108,7 +108,7 @@ std::ranges::sort(data) // now
 ```
 
 Based on 3 core components:
-- **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements
+- **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements, with constant time for copying and moving
 ```cpp
 std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 auto result = data | std::viewes::remove_if([](int i) { return i % 2 == 1; })
@@ -123,9 +123,29 @@ auto evens = data | std::views::filter([](int i) { return i % 2 == 0; });
 - **Actions**: eagerly evaluated, mutting
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
-auto result = data | actions::sort | actions::unique
+auto result = data | std::actions::sort | std::actions::unique;
 ```
+> result == {0, 1, 3, 4, 8}
+Also, shortcut version
+```cpp
+std::vector<int> data{4, 3, 2, 1, 0};
+data |= std::actions::sort;
+```
+> data == {0, 1, 2, 3, 4}
 - **Algorithms**: all Standard Library algorithms accepting ranges instead of iterator pairs
+
+:bulb: Projection
+
+```cpp
+struct Employee {
+  std::string firstName;
+  std::string lastName;
+};
+
+std::vector<Employee> employees = {...};
+
+std::ranges::sort(employees, {}, &Employee::lastName);
+```
 
 :mortar_board: **Additional links**:
 
@@ -133,4 +153,5 @@ auto result = data | actions::sort | actions::unique
   - [Range-v3: User Manual](https://ericniebler.github.io/range-v3/)
 
 - :movie_camera:
+  - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8)
   - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
