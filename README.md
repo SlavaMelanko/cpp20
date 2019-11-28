@@ -29,8 +29,6 @@ Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in i
 
   > Same names in multiple modules will not clash
 
-- Modules explicitely state what should be exported (e.g. functions, classes, ...)
-
 - Preprocessor usage elimination
 
 - The order of `import` statements will not matter
@@ -124,17 +122,20 @@ auto evens = data | std::views::filter([](int i) { return i % 2 == 0; });
 > evens == {0, 2, 4, 6}
 
 - **Actions** are ranges which are eagerly evaluated, mutating the data, and can be composed as views
+
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
 auto result = data | std::actions::sort | std::actions::unique;
 ```
 > result == {0, 1, 3, 4, 8}
+
 Also, shortcut version
 ```cpp
 std::vector<int> data{4, 3, 2, 1, 0};
 data |= std::actions::sort;
 ```
 > data == {0, 1, 2, 3, 4}
+
 - **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
 
 :bulb: Projection
