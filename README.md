@@ -1,4 +1,4 @@
-# cpp20
+# C++20
 
 Overview of C++20. Inspired by 
 
