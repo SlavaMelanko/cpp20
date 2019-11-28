@@ -38,31 +38,31 @@ and others talks.
 
 - The order of `import` statements will not matter
 
-:mag_right: **Example** (:warning: not tested yet):
+:mag_right: **Example**:
 
 ```cpp
-// cppcon.cpp/.cppm/.mpp
-export module cppcon;
+// hello.cpp/.cppm/.mpp
+export module hello;
 
-namespace CppCon {
+namespace hello {
 
 auto GetWelcomeMessage() {
-  return "Welcome to C++20";
+  return "Welcome to C++20!";
 }
 
 export auto GetWelcome() {
   return GetWelcomeMessage();
 }
 
-} // namespace CppCon
+} // namespace hello
 
 // main.cpp/.cppm/.mpp
-import cppcon;
+import hello;
 
 import <iostream>;
 
 int main() {
-  std::cout << CppCon::GetWelcome();
+  std::cout << hello::GetWelcome();
 }
 ```
 
@@ -143,7 +143,7 @@ data |= std::actions::sort;
 
 - **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
 
-:bulb: Projection
+:bulb: Projection:
 
 ```cpp
 struct Employee {
