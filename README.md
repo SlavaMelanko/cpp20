@@ -50,7 +50,7 @@ auto GetWelcomeMessage() {
   return "Welcome to C++20!";
 }
 
-export auto GetWelcome() {
+export auto SayWelcome() {
   return GetWelcomeMessage();
 }
 
@@ -62,7 +62,7 @@ import hello;
 import <iostream>;
 
 int main() {
-  std::cout << hello::GetWelcome();
+  std::cout << hello::SayWelcome();
 }
 ```
 
