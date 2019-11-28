@@ -1,6 +1,11 @@
 # cpp20
 
-Overview of C++20. Inspired by [CppCon 2019: Marc Gregoire “C++20: What's in it for you?"](https://youtu.be/Y652wQqbYEI?list=PLun8Ea0ZRc-k5F6yli7R1El0M77l52R0W) and others talks.
+Overview of C++20. Inspired by 
+
+* [CppCon 2019: Bjarne Stroustrup “C++20: C++ at 40”](https://youtu.be/u_ij0YNkFUs)
+* [CppCon 2019: Marc Gregoire “C++20: What's in it for you?"](https://youtu.be/Y652wQqbYEI)
+
+and others talks.
 
 # Contents
 
