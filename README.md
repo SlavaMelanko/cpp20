@@ -143,6 +143,7 @@ std::vector<int> original{4, 3, 4, 1, 8, 0, 8};
 auto modified = original | ranges::copy | ranges::actions::sort | ranges::actions::unique;
 ```
 > original = [4,3,4,1,8,0,8]
+
 > modified = [0,1,3,4,8]
 
 - **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
