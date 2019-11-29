@@ -156,9 +156,8 @@ auto modified = original | ranges::copy | ranges::actions::sort | ranges::action
 Algorithms - all standard library algorithms accepting ranges instead of iterator pairs
 
 ```cpp
-auto sequence = ranges::views::ints(1, ranges::unreachable)
-  | ranges::views::transform([](const auto i) { return i * i; })
-  | ranges::views::take(10);
+auto sequence = ranges::views::ints(1, 11)
+  | ranges::views::transform([](const auto i) { return i * i; });
 const auto sum = ranges::accumulate(sequence, 0);
 ```
 > sum = 385
@@ -168,13 +167,14 @@ const auto sum = ranges::accumulate(sequence, 0);
 ```cpp
 struct Employee {
   std::string firstName;
-  std::string lastName;
+  uint8_t age;
 };
-
-std::vector<Employee> employees = {...};
-
-std::ranges::sort(employees, {}, &Employee::lastName);
+    
+std::vector<Employee> employees = {{"Jason", 50}, {"Jane", 40}};
+    
+ranges::sort(employees, {}, &Employee::age);
 ```
+> employees = {{"Jane", 40}, {"Jason", 50}}
 
 :mortar_board: **Additional links**:
 
@@ -182,5 +182,5 @@ std::ranges::sort(employees, {}, &Employee::lastName);
   - [Range-v3: User Manual](https://ericniebler.github.io/range-v3/)
 
 - :movie_camera:
-  - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8)
+  - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8), [code samples](https://github.com/dvirtz/ranges_code_samples)
   - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
