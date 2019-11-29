@@ -148,6 +148,14 @@ auto modified = original | ranges::copy | ranges::actions::sort | ranges::action
 
 - **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
 
+```cpp
+auto sequence = ranges::views::ints(1, ranges::unreachable)
+  | ranges::views::transform([](const auto i) { return i * i; })
+  | ranges::views::take(10);
+const auto sum = ranges::accumulate(sequence, 0);
+```
+> sum = 385
+
 :bulb: Projection:
 
 ```cpp
