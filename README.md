@@ -112,7 +112,10 @@ ranges::sort(data) // now
 ```
 
 Based on 3 core components:
-- **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements,
+
+### Views
+
+Views are ranges with 'lazy evaluation', non-owning, and non-mutating of elements,
 with constant time for copying and moving
 
 ```cpp
@@ -130,7 +133,9 @@ std::cout << ranges::views::all(evens) << '\n';
 ```
 > output: [0, 2, 4, 6]
 
-- **Actions** are ranges which are eagerly evaluated, mutating the data, and can be composed as views
+### Actions
+
+ Actions are ranges which are eagerly evaluated, mutating the data, and can be composed as views
 
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
@@ -146,7 +151,9 @@ auto modified = original | ranges::copy | ranges::actions::sort | ranges::action
 
 > modified = [0,1,3,4,8]
 
-- **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
+### Algorithms
+
+Algorithms - all standard library algorithms accepting ranges instead of iterator pairs
 
 ```cpp
 auto sequence = ranges::views::ints(1, ranges::unreachable)
