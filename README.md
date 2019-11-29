@@ -131,7 +131,7 @@ std::vector<int> data{0, 1, 2, 3, 4, 5, 6};
 auto evens = data | ranges::views::filter([](auto i) { return i % 2 == 0; });
 std::cout << ranges::views::all(evens) << '\n';
 ```
-> output: [0, 2, 4, 6]
+> [0, 2, 4, 6]
 
 ### Actions
 
