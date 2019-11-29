@@ -4,6 +4,7 @@ Overview of C++20. Inspired by
 
 * [CppCon 2019: Bjarne Stroustrup “C++20: C++ at 40”](https://youtu.be/u_ij0YNkFUs)
 * [CppCon 2019: Marc Gregoire “C++20: What's in it for you?"](https://youtu.be/Y652wQqbYEI)
+* [CppCon 2019: Jeff Garland “The C++20 Standard Library: Beyond Ranges”](https://youtu.be/fI19ttpUNRQ)
 
 and others talks.
 
@@ -102,44 +103,47 @@ import <iostream>;
 Similar to begin/end iterators but not replace them.
 It provides a nicer and easier to read syntax.
 
-:mag_right: **Example** (:warning: not tested yet):
+:mag_right: **Example** (using [range-v3](https://github.com/ericniebler/range-v3)):
 
 ```cpp
 std::array<int, 5> data{2, 4, 5, 1, 3};
 std::sort(std::begin(data), std::end(data)); // before
-std::ranges::sort(data) // now
+ranges::sort(data) // now
 ```
 
 Based on 3 core components:
-- **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements, with constant time for copying and moving
+- **Views** are ranges with 'lazy evaluation', non-owning, and non-mutating of elements,
+with constant time for copying and moving
 
 ```cpp
 std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-auto result = data | std::viewes::remove_if([](int i) { return i % 2 == 1; })
-                   | std::viewes::transform([](int i) { return std::to_string(i) });
+auto result = data
+        | ranges::views::remove_if([](int i) { return i % 2 == 1; })
+        | ranges::views::transform([](int i) { return std::to_string(i); });
 ```
-> result == {"2", "4", "6", "8", "10"}
+> result = ["2", "4", "6", "8", "10"]
 
 ```cpp
 std::vector<int> data{0, 1, 2, 3, 4, 5, 6};
-auto evens = data | std::views::filter([](int i) { return i % 2 == 0; });
+auto evens = data | ranges::views::filter([](auto i) { return i % 2 == 0; });
+std::cout << ranges::views::all(evens) << '\n';
 ```
-> evens == {0, 2, 4, 6}
+> output: [0, 2, 4, 6]
 
 - **Actions** are ranges which are eagerly evaluated, mutating the data, and can be composed as views
 
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
-auto result = data | std::actions::sort | std::actions::unique;
+data |= ranges::actions::sort | ranges::actions::unique;
 ```
-> result == {0, 1, 3, 4, 8}
+> result = [0, 1, 3, 4, 8]
 
-Also, shortcut version
 ```cpp
-std::vector<int> data{4, 3, 2, 1, 0};
-data |= std::actions::sort;
+std::vector<int> original{4, 3, 4, 1, 8, 0, 8};
+auto modified = original | ranges::copy | ranges::actions::sort | ranges::actions::unique;
 ```
-> data == {0, 1, 2, 3, 4}
+> original = [4,3,4,1,8,0,8]
+> modified = [0,1,3,4,8]
 
 - **Algorithms** - all standard library algorithms accepting ranges instead of iterator pairs
 
