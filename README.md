@@ -96,7 +96,7 @@ import <iostream>;
   - [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
   - [Core C++ 2019 :: Bryce Adelstein :: Modules are Coming](https://youtu.be/bDTm6y6fNSU)
 
-:arrow_up: [Back to top](#contents)
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="ranges"></a>
 ## Ranges
@@ -189,7 +189,7 @@ ranges::sort(employees, {}, &Employee::age);
   - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8), [code samples](https://github.com/dvirtz/ranges_code_samples)
   - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
 
-:arrow_up: [Back to top](#contents)
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="coroutines"></a>
 ## Coroutines
@@ -244,4 +244,4 @@ int main()
 
 ? A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
 
-:arrow_up: [Back to top](#contents)
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
