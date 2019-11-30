@@ -94,6 +94,8 @@ import <iostream>;
   - [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
   - [Core C++ 2019 :: Bryce Adelstein :: Modules are Coming](https://youtu.be/bDTm6y6fNSU)
 
+[:arrow_up: back to top](#contents)
+
 <a name="ranges"></a>
 ## Ranges
 
