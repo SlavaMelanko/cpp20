@@ -12,27 +12,23 @@ and others talks.
 
 1. [Modules](#modules)
 1. [Ranges](#ranges)
+1. [Coroutines](#coroutines)
 
 <a name="modules"></a>
 ## Modules
 
-:white_check_mark: **Advantages**:
-
-- A way to organize, encapsulate, and isolate your code
+:white_check_mark: Module is a way to organize, encapsulate, and isolate your code. Advantages:
 
 - No need of header files
-
   > Separation into interface and implementation files is possible but it is obsolete
 
 - Better compilation times
-
   > Modules are processed only once. Compare this with M headers which are included in N translation units.
   > The combinatorial explosion means, that the header has to be parsed M*N times.
 
 - No need for include guard
 
 - No need to invent unique names
-
   > Same names in multiple modules will not clash
 
 - Preprocessor usage elimination
@@ -184,3 +180,16 @@ ranges::sort(employees, {}, &Employee::age);
 - :movie_camera:
   - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8), [code samples](https://github.com/dvirtz/ranges_code_samples)
   - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
+
+<a name="coroutines"></a>
+## Coroutines
+
+:white_check_mark: Coroutine is a function with one of the following
+
+- **co_await** suspends evaluation of a coroutine while waiting for a computation to finish
+- **co_return** returns from a coroutine
+  > Just `return` is not allowed
+- **co_yield** returns a value from a coroutine back to the caller, and suspends the coroutine,
+subsequently calling the coroutine again continues its execution
+
+
