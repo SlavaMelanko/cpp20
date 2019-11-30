@@ -88,7 +88,7 @@ import <iostream>;
 | `module : private;` |
 | `...` |
 
-:mortar_board: **Additional links**:
+:link: **Additional links**:
 
 - :movie_camera:
   - [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
@@ -180,7 +180,7 @@ ranges::sort(employees, {}, &Employee::age);
 ```
 > employees = {{"Jane", 40}, {"Jason", 50}}
 
-:mortar_board: **Additional links**:
+:link: **Additional links**:
 
 - :newspaper:
   - [Range-v3: User Manual](https://ericniebler.github.io/range-v3/)
