@@ -97,7 +97,7 @@ import <iostream>;
 <a name="ranges"></a>
 ## Ranges
 
-:zap: Range is an object referring to a sequence of elements.
+:white_check_mark: Range is an object referring to a sequence of elements.
 Similar to begin/end iterators but not replace them.
 It provides a nicer and easier to read syntax.
 
@@ -111,7 +111,7 @@ std::sort(std::begin(data), std::end(data)); // before
 ranges::sort(data) // now
 ```
 
-Based on 3 core components:
+Ranges library is based on 3 core components:
 
 ### Views
 
@@ -188,7 +188,7 @@ ranges::sort(employees, {}, &Employee::age);
 <a name="coroutines"></a>
 ## Coroutines
 
-:white_check_mark: Coroutine is a function with one of the following
+:white_check_mark: Coroutine is a function with one of the following:
 
 - **co_await** suspends evaluation of a coroutine while waiting for a computation to finish
 
