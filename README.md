@@ -101,7 +101,9 @@ import <iostream>;
 Similar to begin/end iterators but not replace them.
 It provides a nicer and easier to read syntax.
 
-:mag_right: **Example** (using [range-v3](https://github.com/ericniebler/range-v3)):
+> **Note**: all below examples were tested using [range-v3](https://github.com/ericniebler/range-v3) library.
+
+:mag_right: **Example**:
 
 ```cpp
 std::array<int, 5> data{2, 4, 5, 1, 3};
@@ -189,8 +191,10 @@ ranges::sort(employees, {}, &Employee::age);
 :white_check_mark: Coroutine is a function with one of the following
 
 - **co_await** suspends evaluation of a coroutine while waiting for a computation to finish
+
 - **co_return** returns from a coroutine
   > Just `return` is not allowed
+
 - **co_yield** returns a value from a coroutine back to the caller, and suspends the coroutine,
 subsequently calling the coroutine again continues its execution
 
