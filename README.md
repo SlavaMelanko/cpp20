@@ -17,7 +17,9 @@ and others talks.
 <a name="modules"></a>
 ## Modules
 
-:white_check_mark: Module is a way to organize, encapsulate, and isolate your code. Advantages:
+:white_check_mark: Module is a way to organize, encapsulate, and isolate your code.
+
+Advantages:
 
 - No need of header files
   > Separation into interface and implementation files is possible but it is obsolete
