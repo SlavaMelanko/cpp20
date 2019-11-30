@@ -188,7 +188,8 @@ ranges::sort(employees, {}, &Employee::age);
 <a name="coroutines"></a>
 ## Coroutines
 
-:white_check_mark: Coroutine is a function with one of the following:
+:white_check_mark: Coroutines are generalised functions that can be suspended and resumed while keeping their state.
+Coroutine must have one of the following keywords:
 
 - **co_await** suspends evaluation of a coroutine while waiting for a computation to finish
 
@@ -198,4 +199,41 @@ ranges::sort(employees, {}, &Employee::age);
 - **co_yield** returns a value from a coroutine back to the caller, and suspends the coroutine,
 subsequently calling the coroutine again continues its execution
 
+Coroutines might be used for:
 
+- Generators
+- Asynchronous I/O
+- Lazy computations
+- Event driven applications (simulations, games, servers, user interfaces, or even algorithms)
+
+C++20 contains language additions to support coroutines, whereas
+standard library does not include helper classes yet such as generators
+
+:mag_right: **Example**:
+
+> **Note**: Below example was tested with [godbolt](https://godbolt.org/z/GUSdpQ) (x64 msvc v19.22)
+
+```cpp
+#include <experimental/coroutine>
+#include <experimental/generator>
+
+std::experimental::generator<int> CoroutineGenerator(const int iterations)
+{
+    for (int i = 0; i < iterations; i++) {
+        co_yield i;
+    }
+}
+
+int main()
+{
+    int total = 0;
+
+    for (auto i : CoroutineGenerator(5)) {
+        total += i;
+    }
+
+    return total;
+}
+```
+
+? A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
