@@ -207,7 +207,7 @@ Coroutines might be used for:
 - Event driven applications (simulations, games, servers, user interfaces, or even algorithms)
 
 C++20 contains language additions to support coroutines, whereas
-standard library does not include helper classes yet such as generators
+standard library does not include helper classes yet such as generators.
 
 :mag_right: **Example**:
 
