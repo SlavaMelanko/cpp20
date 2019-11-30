@@ -1,6 +1,6 @@
 # C++20
 
-![cpp20](https://img.shields.io/badge/C%2B%2B-20-blue)
+![license](https://img.shields.io/badge/License-MIT-green) ![cpp20](https://img.shields.io/badge/C%2B%2B-20-blue)
 
 Overview of C++20. Inspired by 
 
