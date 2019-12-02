@@ -23,19 +23,19 @@ and others talks.
 
 Advantages:
 
-- No need of header files
-  > Separation into interface and implementation files is possible but it is obsolete
-
 - Better compilation times
   > Modules are processed only once. Compare this with M headers which are included in N translation units.
   > The combinatorial explosion means, that the header has to be parsed M*N times.
 
+- No need of header files
+  > Separation into interface and implementation files is possible but it is obsolete
+
 - No need for include guard
+
+- Preprocessor usage elimination
 
 - No need to invent unique names
   > Same names in multiple modules will not clash
-
-- Preprocessor usage elimination
 
 - The order of `import` statements will not matter
 
