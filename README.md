@@ -19,7 +19,7 @@ and others talks.
 <a name="modules"></a>
 ## Modules
 
-:white_check_mark: Module is a way to organize, encapsulate, and isolate your code.
+:bulb: Module is a way to organize, encapsulate, and isolate your code.
 
 Advantages:
 
@@ -67,7 +67,7 @@ int main() {
 }
 ```
 
-:bulb: You can import header files, e.g.
+:paperclip: You can import header files, e.g.
 
 ```cpp
 import <iostream>;
@@ -90,7 +90,7 @@ import <iostream>;
 
 :link: **Additional links**:
 
-- :movie_camera:
+- :clapper:
   - [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
   - [CppCon 2019: Boris Kolpackov “Practical C++ Modules”](https://youtu.be/szHV6RdQdg8)
   - [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
@@ -194,7 +194,8 @@ ranges::sort(employees, {}, &Employee::age);
 <a name="coroutines"></a>
 ## Coroutines
 
-> :point_up: The term coroutine was coined by Melvin Conway in 1958. Boost has had several coroutine libraries at least since 2009 and some C coroutine libraries were well known since 2000.
+> :clock1: The term coroutine was coined by Melvin Conway in 1958.
+> Boost has had several coroutine libraries at least since 2009 and some C coroutine libraries were well known since 2000.
 
 :bookmark: Coroutines are generalised functions that:
 
@@ -254,9 +255,9 @@ int main()
 
 ? A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
 
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
 :link: **Additional links**:
 
-- :cd:
+- :clapper:
   - [CppCon 2019: Adi Shavit “Generators, Coroutines and Other Brain Unrolling Sweetness”](https://youtu.be/qYHDERleSL8)
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
