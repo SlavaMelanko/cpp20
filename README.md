@@ -166,7 +166,7 @@ const auto sum = ranges::accumulate(sequence, 0);
 ```
 > sum = 385
 
-:bulb: Projection:
+:paperclip: Projection:
 
 ```cpp
 struct Employee {
