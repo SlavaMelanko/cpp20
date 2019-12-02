@@ -76,7 +76,7 @@ import <iostream>;
 - Implicitely turns the `iostream` header into module
 - Improves build throughput, as `iostream` will then processed only once
 
-:scroll: **Structure**:
+:clipboard: **Structure**:
 
 | Module (top to bottom) |
 | :---: |
@@ -101,7 +101,7 @@ import <iostream>;
 <a name="ranges"></a>
 ## Ranges
 
-:white_check_mark: Range is an object referring to a sequence of elements.
+:bulb: Range is an object referring to a sequence of elements.
 It is additional (abstraction) layer on top of iterators
 that provides a nicer and easier to read syntax.
 
@@ -185,7 +185,7 @@ ranges::sort(employees, {}, &Employee::age);
 - :newspaper:
   - [Range-v3: User Manual](https://ericniebler.github.io/range-v3/)
 
-- :movie_camera:
+- :clapper:
   - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8), [code samples](https://github.com/dvirtz/ranges_code_samples)
   - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
 
@@ -234,15 +234,13 @@ standard library does not include helper classes yet such as generators.
 #include <experimental/coroutine>
 #include <experimental/generator>
 
-std::experimental::generator<int> CoroutineGenerator(const int iterations)
-{
+std::experimental::generator<int> CoroutineGenerator(const int iterations) {
     for (int i = 0; i < iterations; i++) {
         co_yield i;
     }
 }
 
-int main()
-{
+int main() {
     int total = 0;
 
     for (auto i : CoroutineGenerator(5)) {
