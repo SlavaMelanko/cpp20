@@ -194,10 +194,9 @@ ranges::sort(employees, {}, &Employee::age);
 <a name="coroutines"></a>
 ## Coroutines
 
-:point_up: The term coroutine was coined by Melvin Conway in 1958.
-Boost has had several coroutine libraries at least since 2009 and some C coroutine libraries were well known since 2000.
+> :point_up: The term coroutine was coined by Melvin Conway in 1958. Boost has had several coroutine libraries at least since 2009 and some C coroutine libraries were well known since 2000.
 
-:pushpin: Coroutines are generalised functions that:
+:bookmark: Coroutines are generalised functions that:
 
 - Can suspend execution
 - Return an intermediate value
@@ -259,5 +258,5 @@ int main()
 
 :link: **Additional links**:
 
-- :movie_camera:
+- :cd:
   - [CppCon 2019: Adi Shavit “Generators, Coroutines and Other Brain Unrolling Sweetness”](https://youtu.be/qYHDERleSL8)
