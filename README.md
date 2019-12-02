@@ -102,8 +102,8 @@ import <iostream>;
 ## Ranges
 
 :white_check_mark: Range is an object referring to a sequence of elements.
-Similar to begin/end iterators but not replace them.
-It provides a nicer and easier to read syntax.
+It is additional (abstraction) layer on top of iterators
+that provides a nicer and easier to read syntax.
 
 > **Note**: all below examples were tested using [range-v3](https://github.com/ericniebler/range-v3) library.
 
@@ -194,7 +194,18 @@ ranges::sort(employees, {}, &Employee::age);
 <a name="coroutines"></a>
 ## Coroutines
 
-:white_check_mark: Coroutines are generalised functions that can be suspended and resumed while keeping their state.
+:point_up: The term coroutine was coined by Melvin Conway in 1958.
+Boost has had several coroutine libraries at least since 2009 and some C coroutine libraries were well known since 2000.
+
+:pushpin: Coroutines are generalised functions that:
+
+- Can suspend execution
+- Return an intermediate value
+- Resume later
+- Preserve local state
+- Allow re-entry more than once
+- Non-pre-emptive -> Cooperative
+
 Coroutine must have one of the following keywords:
 
 - **co_await** suspends evaluation of a coroutine while waiting for a computation to finish
@@ -207,7 +218,7 @@ subsequently calling the coroutine again continues its execution
 
 Coroutines might be used for:
 
-- Generators
+- Generators - objects that lazily generate values
 - Asynchronous I/O
 - Lazy computations
 - Event driven applications (simulations, games, servers, user interfaces, or even algorithms)
@@ -245,3 +256,8 @@ int main()
 ? A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+:link: **Additional links**:
+
+- :movie_camera:
+  - [CppCon 2019: Adi Shavit “Generators, Coroutines and Other Brain Unrolling Sweetness”](https://youtu.be/qYHDERleSL8)
