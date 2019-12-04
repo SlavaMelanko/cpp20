@@ -88,14 +88,6 @@ import <iostream>;
 | `module : private;` |
 | `...` |
 
-:link: **Additional links**:
-
-- :clapper:
-  - [CppCon 2019: Michael Spencer “Building Modules”](https://youtu.be/L0SHHkBenss)
-  - [CppCon 2019: Boris Kolpackov “Practical C++ Modules”](https://youtu.be/szHV6RdQdg8)
-  - [CppCon 2019: Gabriel Dos Reis “Programming with C++ Modules: Guide for the Working”](https://youtu.be/tjSuKOz5HK4)
-  - [Core C++ 2019 :: Bryce Adelstein :: Modules are Coming](https://youtu.be/bDTm6y6fNSU)
-
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="ranges"></a>
@@ -180,22 +172,12 @@ ranges::sort(employees, {}, &Employee::age);
 ```
 > employees = {{"Jane", 40}, {"Jason", 50}}
 
-:link: **Additional links**:
-
-- :newspaper:
-  - [Range-v3: User Manual](https://ericniebler.github.io/range-v3/)
-
-- :clapper:
-  - [CppCon 2019: Dvir Yitzchaki “Range Algorithms, Views and Actions: A Comprehensive Guide”](https://youtu.be/qQtS50ZChN8), [code samples](https://github.com/dvirtz/ranges_code_samples)
-  - [CppCon 2019: Jeff Garland “From STL to Ranges: Using Ranges Effectively”](https://youtu.be/vJ290qlAbbw)
-
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="coroutines"></a>
 ## Coroutines
 
 > :clock1: The term coroutine was introduced by Melvin Conway in 1958.
-> Boost has had several coroutine libraries at least since 2009 and some C coroutine libraries were well known since 2000.
 
 :bookmark: Coroutines are generalised functions that:
 
@@ -204,7 +186,7 @@ ranges::sort(employees, {}, &Employee::age);
 - Resume later
 - Preserve local state
 - Allow re-entry more than once
-- Non-pre-emptive -> Cooperative
+- Non-pre-emptive -> Cooperative?
 
 Coroutine must have one of the following keywords:
 
@@ -218,10 +200,9 @@ subsequently calling the coroutine again continues its execution
 
 Coroutines might be used for:
 
-- Generators - objects that lazily generate values
-- Asynchronous I/O
-- Lazy computations
-- Event driven applications (simulations, games, servers, user interfaces, or even algorithms)
+- Asynchronous I/O, e.g. servers
+- Lazy computations, e.g. generators
+- Event driven applications, e.g. simulations, games, user interfaces, or even algorithms
 
 > **Note**: C++20 contains language additions to support coroutines, whereas
 > standard library does not include helper classes yet such as generators.
@@ -251,12 +232,6 @@ int main() {
 }
 ```
 
-? A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
-
-:link: **Additional links**:
-
-- :clapper:
-  - [CppCon 2019: Adi Shavit “Generators, Coroutines and Other Brain Unrolling Sweetness”](https://youtu.be/qYHDERleSL8)
-  - [CppCon 2018: G. Nishanov “Nano-coroutines to the Rescue! (Using Coroutines TS, of Course)”](https://youtu.be/j9tlJAqMV7U)
+:paperclip: A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
