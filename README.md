@@ -179,7 +179,7 @@ ranges::sort(employees, {}, &Employee::age);
 
 > :clock1: The term coroutine was introduced by Melvin Conway in 1958.
 
-:bookmark: Coroutines are generalised functions that:
+:bulb: Coroutines are generalised functions that:
 
 - Can suspend execution
 - Return an intermediate value
