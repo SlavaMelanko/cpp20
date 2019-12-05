@@ -15,6 +15,7 @@ and others talks.
 1. [Modules](#modules)
 1. [Ranges](#ranges)
 1. [Coroutines](#coroutines)
+1. [Concepts](#concepts)
 
 <a name="modules"></a>
 ## Modules
@@ -233,5 +234,44 @@ int main() {
 ```
 
 :paperclip: A range-based `for co_wait` loop: `for co_await (declaration : expression) statement`
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="concepts"></a>
+## Concepts
+
+:bulb: Requirements that can be attached to class templates and function templates to constraint the template arguments.
+
+:mag_right: **Example**:
+
+Concept definitions:
+
+```cpp
+template<typename T>
+concept Incrementable = requires(T t) { ++t; t++; };
+
+template <typename T>
+concept Integral = std::is_integral<T>::value;
+
+template<typename T>
+concept HasSize = requires(T t) {
+    { t.size() } -> std::convertible_to<std::size_t>;
+};
+```
+
+Usage: 
+
+```cpp
+void Foo(Incrementable auto t);
+
+template<Incrementable T>
+void Foo(T t);
+
+template<typename T> requires Incrementable<T>
+void Foo(T t);
+
+template<typename T>
+void Foo(T t) requires Incrementable<T> && Decrementable<T>;
+```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
