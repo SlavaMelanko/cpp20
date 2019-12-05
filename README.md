@@ -4,9 +4,9 @@
 
 :pushpin: Please note that
 
-1. The idea of this overview - self education
+1. The idea of this overview is self education
 1. The main goal - keep it simple and short
-1. Overview is primarily based on [CppPon 2019 talks](https://www.youtube.com/playlist?list=PLHTh1InhhwT6KhvViwRiTR7I5s09dLCSw)
+1. And it is primarily based on [CppPon 2019 talks](https://www.youtube.com/playlist?list=PLHTh1InhhwT6KhvViwRiTR7I5s09dLCSw)
 
 :warning: There is no guarantee that below theoretical and practical parts are correct and up to date
 
