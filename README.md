@@ -261,17 +261,24 @@ concept HasSize = requires(T t) {
 
 Usage: 
 
+- Constrained template parameters:
 ```cpp
-void Foo(Incrementable auto t);
-
 template<Incrementable T>
 void Foo(T t);
-
-template<typename T> requires Incrementable<T>
+```
+- Requires clause:
+```cpp
+template<typename T> requires Incrementable<T> && Decrementable<T>
 void Foo(T t);
-
+```
+- Trailing requires clause:
+```cpp
 template<typename T>
 void Foo(T t) requires Incrementable<T> && Decrementable<T>;
+```
+- Placeholder syntax:
+```cpp
+void Foo(Incrementable auto t);
 ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
