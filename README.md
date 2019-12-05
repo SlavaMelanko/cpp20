@@ -1,14 +1,14 @@
-# C++20
+# C++20 Overview
 
 ![license](https://img.shields.io/badge/License-MIT-green) ![cpp20](https://img.shields.io/badge/C%2B%2B-20-blue)
 
-Overview of C++20. Inspired by 
+:pushpin: Please note that
 
-* [CppCon 2019: Bjarne Stroustrup “C++20: C++ at 40”](https://youtu.be/u_ij0YNkFUs)
-* [CppCon 2019: Marc Gregoire “C++20: What's in it for you?"](https://youtu.be/Y652wQqbYEI)
-* [CppCon 2019: Jeff Garland “The C++20 Standard Library: Beyond Ranges”](https://youtu.be/fI19ttpUNRQ)
+1. The idea of this overview - self education
+1. The main goal - keep it simple and short
+1. Overview is primarily based on [CppPon 2019 talks](https://www.youtube.com/playlist?list=PLHTh1InhhwT6KhvViwRiTR7I5s09dLCSw)
 
-and others talks.
+:warning: There is no guarantee that below theoretical and practical parts are correct and up to date
 
 # Contents
 
