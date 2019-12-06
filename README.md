@@ -16,7 +16,7 @@
 1. [Ranges](#ranges)
 1. [Coroutines](#coroutines)
 1. [Concepts](#concepts)
-1. [Lambda Expression Changes](#lambda)
+1. [Lambda Expression](#lambda)
 
 <a name="modules"></a>
 ## Modules
@@ -285,26 +285,11 @@ void Foo(Incrementable auto t);
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="lambda"></a>
-## Lambda Expression Changes
+## Lambda Expression
 
 - Since C++20, you need to capture `this` explicitly, e.g. `[=, this]`
 
 - Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
-
-  * Suppose you want to know a type of the elements in container:
-
-  ```cpp
-  // Before C++20
-  auto foo = [](auto vec) {
-    using T = typename decltype(vec)::value_type;
-    // ...
-  };
-
-  // Now
-  auto foo = []<typename T>(std::vector<T> vec) {
-    // ...
-  }
-  ```
 
   * Retrieve type of parameters of generic lambdas, e.g. to access static members/methods or nested aliases:
 
@@ -313,28 +298,55 @@ void Foo(Incrementable auto t);
   auto foo = [](const auto& value) {
     using T = std::decay_t<decltype(value)>;
     T valueCopy = value;
-    T::staticMethod(); // call static method
-    using Status = typename T::status; // 
-  }
+    T::staticMethod();
+    using Alias = T::NestedAlias;
+  };
 
   // Now
   auto foo = []<typename T>(const T& value) {
     T valueCopy = value;
     T::staticMethod();
-    using Alias = typename T::NestedAlias;
-  }
+    using Alias = T::NestedAlias;
+  };
+  ```
+
+  * Retrieve type of the elements of containers:
+
+  ```cpp
+  // Before C++20
+  auto foo = [](const auto& data) {
+    using T = typename std::decay_t<decltype(data)>::value_type;
+    // ...
+  };
+
+  // Now
+  auto foo = []<typename T>(const std::vector<T>& data) {
+    // ...
+  };
   ```
 
   * Perfect forwarding:
+
   ```cpp
   // Before C++20
-  auto foo = [](auto&& ...args) {
+  auto foo = [](auto&&... args) {
     return bar(std::forward<decltype(args)>(args)...);
-  }
+  };
 
   // Now
-  auto foo = []<typename ...T>(T&& ...args) {
+  auto foo = []<typename ...T>(T&&... args) {
     return bar(std::forward<T>(args)...);
+  };
+  ```
+
+  * Init-capture followed by an ellipsis:
+
+  ```cpp
+  template<typename F, typename... Args>
+  auto DelayInvoke(F f, Args... args) {
+    return [f = std::move(f), args = std::move(args)...]() {
+      return std::invoke(f, args...);
+    };
   }
   ```
 
