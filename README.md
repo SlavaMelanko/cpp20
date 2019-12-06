@@ -291,10 +291,10 @@ void Foo(Incrementable auto t);
 
 - Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
 
-  * Retrieve type of parameters of generic lambdas, e.g. to access static members/methods or nested aliases:
+  * Retrieve type of parameters of generic lambdas to access static members/methods or nested aliases:
 
   ```cpp
-  // Before C++20
+  // Before
   auto foo = [](const auto& value) {
     using T = std::decay_t<decltype(value)>;
     T valueCopy = value;
@@ -310,10 +310,10 @@ void Foo(Incrementable auto t);
   };
   ```
 
-  * Retrieve type of the elements of containers:
+  * Retrieve type of the element of containers:
 
   ```cpp
-  // Before C++20
+  // Before
   auto foo = [](const auto& data) {
     using T = typename std::decay_t<decltype(data)>::value_type;
     // ...
@@ -328,7 +328,7 @@ void Foo(Incrementable auto t);
   * Perfect forwarding:
 
   ```cpp
-  // Before C++20
+  // Before
   auto foo = [](auto&&... args) {
     return bar(std::forward<decltype(args)>(args)...);
   };
