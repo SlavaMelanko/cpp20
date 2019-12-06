@@ -189,7 +189,7 @@ ranges::sort(employees, {}, &Employee::age);
 - Allow re-entry more than once
 - Non-pre-emptive -> Cooperative?
 
-Coroutine must have one of the following keywords:
+Coroutines must have one of the following keywords:
 
 - **co_await** suspends evaluation of a coroutine while waiting for a computation to finish
 
