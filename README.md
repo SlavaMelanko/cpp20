@@ -292,6 +292,7 @@ void Foo(Incrementable auto t);
 - Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
 
   * Suppose you want to know a type of the elements in container:
+
   ```cpp
   // Before C++20
   auto foo = [](auto vec) {
@@ -306,9 +307,10 @@ void Foo(Incrementable auto t);
   ```
 
   * Retrieve type of parameters of generic lambdas, e.g. to access static members/methods or nested aliases:
+
   ```cpp
   // Before C++20
-  auto foo = [](const auto &value) {
+  auto foo = [](const auto& value) {
     using T = std::decay_t<decltype(value)>;
     T valueCopy = value;
     T::staticMethod(); // call static method
@@ -316,7 +318,7 @@ void Foo(Incrementable auto t);
   }
 
   // Now
-  auto foo = []<typename T>(const T &value) {
+  auto foo = []<typename T>(const T& value) {
     T valueCopy = value;
     T::staticMethod();
     using Alias = typename T::NestedAlias;
