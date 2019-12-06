@@ -333,6 +333,9 @@ void Foo(Incrementable auto t);
   }
 
   // Now
+  auto foo = []<typename ...T>(T&& ...args) {
+    return bar(std::forward<T>(args)...);
+  }
   ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
