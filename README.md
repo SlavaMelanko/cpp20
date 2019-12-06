@@ -8,7 +8,7 @@
 1. The main goal - keep it simple and short
 1. And it is primarily based on [CppPon 2019 talks](https://www.youtube.com/playlist?list=PLHTh1InhhwT6KhvViwRiTR7I5s09dLCSw)
 
-:warning: There is no guarantee that below theoretical and practical parts are correct and up to date
+:warning: There is no guarantee that below theoretical and practical parts are correkt and up to date
 
 # Contents
 
@@ -79,15 +79,15 @@ import <iostream>;
 
 :clipboard: **Structure**:
 
-| Module (top to bottom) |
-| :---: |
-| `module;` |
-| preprocessor derictives only, e.g `#include <cassert>` |
-| `export module name;` |
-| `import ...;` |
-| `...` |
-| `module : private;` |
-| `...` |
+  | Module (top to bottom) |
+  | :---: |
+  | `module;` |
+  | preprocessor derictives only, e.g `#include <cassert>` |
+  | `export module name;` |
+  | `import ...;` |
+  | `...` |
+  | `module : private;` |
+  | `...` |
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
