@@ -287,7 +287,7 @@ void Foo(Incrementable auto t);
 <a name="lambda"></a>
 ## Lambda Expression
 
-- Since C++20, you need to capture `this` explicitly, e.g. `[=, this]`
+- Since C++20, you need to capture `this` explicitly in case of using `[=]`, e.g. `[=, this]`
 
 - Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
 
