@@ -112,8 +112,8 @@ Ranges library is based on 3 core components:
 
 ### Views
 
-Views are ranges with 'lazy evaluation', non-owning, and non-mutating of elements,
-with constant time for copying and moving
+  Ranges with 'lazy evaluation', non-owning, and non-mutating of elements,
+  with constant time for copying and moving
 
 ```cpp
 std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -132,7 +132,7 @@ std::cout << ranges::views::all(evens) << '\n';
 
 ### Actions
 
- Actions are ranges which are eagerly evaluated, mutating the data, and can be composed as views
+ Ranges which are eagerly evaluated, mutating the data, and can be composed as views
 
 ```cpp
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
@@ -150,7 +150,7 @@ auto modified = original | ranges::copy | ranges::actions::sort | ranges::action
 
 ### Algorithms
 
-Algorithms - all standard library algorithms accepting ranges instead of iterator pairs
+  All standard library algorithms accepting ranges instead of iterator pairs
 
 ```cpp
 auto sequence = ranges::views::ints(1, 11)
