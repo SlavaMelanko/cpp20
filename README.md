@@ -328,7 +328,9 @@ void Foo(Incrementable auto t);
   * Perfect forwarding:
   ```cpp
   // Before C++20
-  auto foo = [](auto&& ...args)
+  auto foo = [](auto&& ...args) {
+    return bar(std::forward<decltype(args)>(args)...);
+  }
 
   // Now
   ```
