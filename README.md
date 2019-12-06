@@ -16,6 +16,7 @@
 1. [Ranges](#ranges)
 1. [Coroutines](#coroutines)
 1. [Concepts](#concepts)
+1. [Lambda Expression Changes](#lambda)
 
 <a name="modules"></a>
 ## Modules
@@ -280,5 +281,54 @@ void Foo(T t) requires Incrementable<T> && Decrementable<T>;
 ```cpp
 void Foo(Incrementable auto t);
 ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="lambda"></a>
+## Lambda Expression Changes
+
+- Since C++20, you need to capture `this` explicitly, e.g. `[=, this]`
+
+- Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
+
+  * Suppose you want to know a type of the elements in container:
+  ```cpp
+  // Before C++20
+  auto foo = [](auto vec) {
+    using T = typename decltype(vec)::value_type;
+    // ...
+  };
+
+  // Now
+  auto foo = []<typename T>(std::vector<T> vec) {
+    // ...
+  }
+  ```
+
+  * Retrieve type of parameters of generic lambdas, e.g. to access static members/methods or nested aliases:
+  ```cpp
+  // Before C++20
+  auto foo = [](const auto &value) {
+    using T = std::decay_t<decltype(value)>;
+    T valueCopy = value;
+    T::staticMethod(); // call static method
+    using Status = typename T::status; // 
+  }
+
+  // Now
+  auto foo = []<typename T>(const T &value) {
+    T valueCopy = value;
+    T::staticMethod();
+    using Alias = typename T::NestedAlias;
+  }
+  ```
+
+  * Perfect forwarding:
+  ```cpp
+  // Before C++20
+  auto foo = [](auto&& ...args)
+
+  // Now
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
