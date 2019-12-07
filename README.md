@@ -358,6 +358,28 @@ void Foo(Incrementable auto t);
 
 - There is a room for using `constexpr` on virtual functions:
   > A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
+  ```cpp
+  struct Base {
+    virtual ~Base() noexcept = default;
+    virtual int foo() const noexcept = 0;
+  };
+
+  struct Derived : public Base {
+    constexpr int foo() const noexcept override { return 2; };
+  };
+
+  int main() {
+    {
+      constexpr Derived derived;
+      constexpr auto value = derived.foo();
+      static_assert(value == 2);
+    }
+    {
+      std::unique_ptr<Base> base = std::make_unique<Derived>();
+      const auto value = base->foo();
+    }
+  }
+  ```
 
 - `std::string` and `std::vector` are now `constexpr`
 
