@@ -356,8 +356,7 @@ void Foo(Incrementable auto t);
 <a name="constexpr"></a>
 ## constexpr
 
-- There is a room for using `constexpr` on virtual functions:
-  > A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
+- C++20 allows virtual functions to be declared `constexpr`:
   ```cpp
   struct Base {
     virtual ~Base() noexcept = default;
@@ -380,6 +379,7 @@ void Foo(Incrementable auto t);
     }
   }
   ```
+  > A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
 
 - `std::string` and `std::vector` are now `constexpr`
 
