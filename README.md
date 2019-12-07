@@ -379,7 +379,7 @@ void Foo(Incrementable auto t);
     }
   }
   ```
-  > A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
+  > **Note**: A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
 
 - `std::string` and `std::vector` are now `constexpr`
 
