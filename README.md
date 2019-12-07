@@ -17,6 +17,7 @@
 1. [Coroutines](#coroutines)
 1. [Concepts](#concepts)
 1. [Lambda Expression](#lambda)
+1. [constexpr](#constexpr)
 
 <a name="modules"></a>
 ## Modules
@@ -349,5 +350,23 @@ void Foo(Incrementable auto t);
     };
   }
   ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="constexpr"></a>
+## constexpr
+
+- There is a room for using `constexpr` on virtual functions:
+  > A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
+
+- `std::string` and `std::vector` are now `constexpr`
+
+- Also, `constexpr` functions can now:
+  * use `dynamic_cast` and `typeid`
+  * do dynamic memory allocations and deallocations
+  * change the active member of a `union`
+  * contain `try/catch` blocks:
+    - But `throw` statements are still not allowed
+	- `try/catch` blocks are no-ops when evaluated in a constant expression
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
