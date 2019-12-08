@@ -18,6 +18,7 @@
 1. [Concepts](#concepts)
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
+1. [Concurrency](#concurrency)
 
 <a name="modules"></a>
 ## Modules
@@ -390,5 +391,50 @@ void Foo(Incrementable auto t);
   * contain `try/catch` blocks:
     - But `throw` statements are still not allowed
 	- `try/catch` blocks are no-ops when evaluated in a constant expression
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="concurrency"></a>
+## Concurrency
+
+- `std::atomic<std::shared_ptr<T>>` and `std::atomic<std::weak_ptr<T>>`
+  > Might use a mutext internally
+  > Global non-member atomic operations are deprecated
+
+- `std::jthread` - automatically joins thread in the destructor
+
+- Cancelling threads:
+  - `std::stop_token` supports actively checking for a stop request
+  - `std::stop_source` requests a thread to stop executaion
+  - `std::stop_callback` calls callback when stop is requested on associated `stop_token`
+
+  ```cpp
+  std::jthread task{[](std::stop_token token) {
+    while (!token.stop_requested()) {
+      // ...
+    }
+  }};
+  // ...
+  task.request_stop();
+  ```
+
+- **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
+  - **counting** semaphore models a non-negative resource count
+  - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
+
+- Waiting and notifying on `std::atomic`
+  > Wait/block for an atomic object to change its value, notified by a notification function
+
+- **Latch** - thread coordination point
+  > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
+
+- **Barrier** - a sequence of phases, in each phase:
+  - a number of threads block untill the requested number of threads attive at the barries, then
+  - a phase completion callback is executed
+  - the thread counter is reset
+  - the next phase starts
+  - thread can continue
+
+- `std::atomic_ref` provides atomic operations on a non-atomic objects
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
