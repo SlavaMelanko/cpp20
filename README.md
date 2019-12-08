@@ -397,15 +397,14 @@ void Foo(Incrementable auto t);
 <a name="concurrency"></a>
 ## Concurrency
 
-- `std::atomic<std::shared_ptr<T>>` and `std::atomic<std::weak_ptr<T>>`
-  > Might use a mutext internally
-  > Global non-member atomic operations are deprecated
-
 - `std::jthread` - automatically joins thread in the destructor
 
 - Cancelling threads:
+
   - `std::stop_token` supports actively checking for a stop request
+  
   - `std::stop_source` requests a thread to stop executaion
+  
   - `std::stop_callback` calls callback when stop is requested on associated `stop_token`
 
   ```cpp
@@ -422,9 +421,6 @@ void Foo(Incrementable auto t);
   - **counting** semaphore models a non-negative resource count
   - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
 
-- Waiting and notifying on `std::atomic`
-  > Wait/block for an atomic object to change its value, notified by a notification function
-
 - **Latch** - thread coordination point
   > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
 
@@ -434,6 +430,15 @@ void Foo(Incrementable auto t);
   - the thread counter is reset
   - the next phase starts
   - thread can continue
+
+- `std::atomic<std::shared_ptr<T>>` and `std::atomic<std::weak_ptr<T>>`
+
+  > Might use a mutex internally
+  
+  > Global non-member atomic operations are deprecated
+
+- Waiting and notifying on `std::atomic`
+  > Wait/block for an atomic object to change its value, notified by a notification function
 
 - `std::atomic_ref` provides atomic operations on a non-atomic objects
 
