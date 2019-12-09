@@ -397,15 +397,15 @@ void Foo(Incrementable auto t);
 <a name="concurrency"></a>
 ## Concurrency
 
-- `std::jthread` - automatically joins thread in the destructor
+- A new thread class `std::jthread` that automatically joins thread in its destructor
 
-- Cancelling threads:
+- Support for cooperative cancellation of threads:
 
   - `std::stop_token` supports actively checking for a stop request
   
   - `std::stop_source` requests a thread to stop executaion
   
-  - `std::stop_callback` calls callback when stop is requested on associated `stop_token`
+  - `std::stop_callback` cancels some async IO on associated `stop_token`
 
   ```cpp
   std::jthread task{[](std::stop_token token) {
@@ -417,29 +417,33 @@ void Foo(Incrementable auto t);
   task.request_stop();
   ```
 
-- **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
-  - **counting** semaphore models a non-negative resource count
-  - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
+- New synchronization facilities:
 
-- **Latch** - thread coordination point
-  > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
+  - **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
+    - **counting** semaphore models a non-negative resource count
+    - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
 
-- **Barrier** - a sequence of phases, in each phase:
-  - a number of threads block untill the requested number of threads attive at the barries, then
-  - a phase completion callback is executed
-  - the thread counter is reset
-  - the next phase starts
-  - thread can continue
+  - **Latch** - thread coordination point
+    > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
 
-- `std::atomic<std::shared_ptr<T>>` and `std::atomic<std::weak_ptr<T>>`
+  - **Barrier** - a sequence of phases, in each phase:
+    - a number of threads block untill the requested number of threads attive at the barries, then
+    - a phase completion callback is executed
+    - the thread counter is reset
+    - the next phase starts
+    - thread can continue
 
-  > Might use a mutex internally
+- Updates for atomic :
+
+  - `std::atomic<std::shared_ptr<T>>` and `std::atomic<std::weak_ptr<T>>`
+
+    > Might use a mutex internally
   
-  > Global non-member atomic operations are deprecated
+    > Global non-member atomic operations are deprecated
 
-- Waiting and notifying on `std::atomic`
-  > Wait/block for an atomic object to change its value, notified by a notification function
+  - Waiting and notifying on `std::atomic`
+    > Wait/block for an atomic object to change its value, notified by a notification function
 
-- `std::atomic_ref` provides atomic operations on a non-atomic objects
+  - `std::atomic_ref` provides atomic operations on a non-atomic objects
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
