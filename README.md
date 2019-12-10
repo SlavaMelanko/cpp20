@@ -401,21 +401,34 @@ void Foo(Incrementable auto t);
 
 - Support for cooperative cancellation of threads:
 
-  - `std::stop_token` supports actively checking for a stop request
+  - `std::stop_source` - class representing a request to stop thread execution
+
+  - `std::stop_token` - an interface for actively checking for a stop request
   
-  - `std::stop_source` requests a thread to stop executaion
-  
-  - `std::stop_callback` cancels some async IO on associated `stop_token`
+  - `std::stop_callback` - an interface for your own cancellation mechanism
 
   ```cpp
-  std::jthread task{[](std::stop_token token) {
-    while (!token.stop_requested()) {
-      // ...
-    }
-  }};
-  // ...
-  task.request_stop();
+  void Sleep(const std::chrono::seconds seconds) {
+    std::this_thread::sleep_for(seconds);
+  }
+
+  int main() {
+    using namespace std::chrono_literals;
+
+    std::jthread t{[](std::stop_token st) {
+      while (!st.stop_requested()) {
+        std::cout << "Working...\n";
+        Sleep(1s);
+      }
+    }};
+
+    Sleep(3s);
+
+    t.request_stop();
+  }
   ```
+  
+  > **Note**: `std::jthread` integrates with `std::stop_token` to support cooperative cancellation
 
 - New synchronization facilities:
 
@@ -423,10 +436,13 @@ void Foo(Incrementable auto t);
     - **counting** semaphore models a non-negative resource count
     - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
 
-  - **Latch** - thread coordination point
+  - **Latches**
+
+    `std::latch` is a single-use counter that allows threads to wait for the count to reach zero.
+
     > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
 
-  - **Barrier** - a sequence of phases, in each phase:
+  - **Barriers** - a sequence of phases, in each phase:
     - a number of threads block untill the requested number of threads attive at the barries, then
     - a phase completion callback is executed
     - the thread counter is reset
