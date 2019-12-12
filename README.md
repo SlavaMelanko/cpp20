@@ -445,11 +445,11 @@ void Foo(Incrementable auto t);
        Data data[threadCount];
        std::vector<std::jthread> threads;
        for (uint32_t i = 0; i < threadsCount; ++i) {
-         threads.push_back(std::jsthread{[&, i] {
+         threads.push_back([&, i] {
 	   data[i] = MakeData(i);
 	   done.count_down();
 	   DoMoreStuff();
-	 }});
+         });
        }
        done.wait();
        ProcessData();
