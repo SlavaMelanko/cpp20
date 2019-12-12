@@ -444,13 +444,12 @@ void Foo(Incrementable auto t);
        std::latch done{threadCount};
        Data data[threadCount];
        std::vector<std::jthread> threads;
-       for (uint32_t i = 0; i < threadsCount; ++i) {
+       for (uint32_t i = 0; i < threadsCount; ++i)
          threads.push_back([&, i] {
 	   data[i] = MakeData(i);
 	   done.count_down();
 	   DoMoreStuff();
          });
-       }
        done.wait();
        ProcessData();
      }
