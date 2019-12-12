@@ -432,22 +432,64 @@ void Foo(Incrementable auto t);
 
 - New synchronization facilities:
 
-  - **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
-    - **counting** semaphore models a non-negative resource count
-    - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
-
   - **Latches**
 
     `std::latch` is a single-use counter that allows threads to wait for the count to reach zero.
 
     > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
+    
+     ```cpp
+     void Foo() {
+       const uint16_t threadCount = ...
+       std::latch done{threadCount};
+       Data data[threadCount];
+       std::vector<std::jthread> threads;
+       for (uint32_t i = 0; i < threadsCount; ++i) {
+         threads.push_back(std::jsthread{[&, i] {
+	   data[i] = MakeData(i);
+	   done.count_down();
+	   DoMoreStuff();
+	 }});
+       }
+       done.wait();
+       ProcessData();
+     }
+     ```
 
   - **Barriers** - a sequence of phases, in each phase:
-    - a number of threads block untill the requested number of threads attive at the barries, then
+    - a number of threads block untill the requested number of threads arrive at the barries, then
     - a phase completion callback is executed
     - the thread counter is reset
     - the next phase starts
     - thread can continue
+  
+    ```cpp
+    const uint16_t numberThreads = ...;
+    void FinishTask() {}
+
+    std::barrier<std::function<void()>> barrier{numberThreads, FinishTask};
+
+    void WorkerThread(std::stop_token st, uint16_t i) {
+      while (!st.stop_requested()) {
+          std::cout << "Working...\n";
+          barrier.arrive_and_wait();
+      }
+    }
+    ```
+  
+  - **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
+    - **counting** semaphore models a non-negative resource count
+    - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
+
+    ```cpp
+    std::counting_semaphore<5> slots{5};
+
+    void Foo() {
+      slots.acquire();
+      DoSomething(); // at most 5 threads can be here
+      slots.release();
+    }
+    ```
 
 - Updates for atomic :
 
