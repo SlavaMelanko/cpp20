@@ -499,8 +499,11 @@ void Foo(Incrementable auto t);
     > Global non-member atomic operations are deprecated
 
   - Waiting and notifying on `std::atomic`
+  
     > Wait/block for an atomic object to change its value, notified by a notification function
 
   - `std::atomic_ref` provides atomic operations on a non-atomic objects
+
+  > **Note**: If you use std::atomic_ref to access an object, all accesses to this object must use std::atomic_ref
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
