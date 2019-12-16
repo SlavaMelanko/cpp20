@@ -516,14 +516,14 @@ void Foo(Incrementable auto t);
 
 ```cpp
 struct User {
-    std::string email;
-    std::string password;
-    int pin;
+  std::string email;
+  std::string password;
+  int pin;
 };
 
 int main() {
-    User user{"user@mail.com", "Passw0rd!", 1234};
-    User user{.email = "user@mail.com", .password = "Passw0rd!"};
+  User jason{"jason@mail.com", "Passw0rd!", 1234}; // good old struct initialization
+  User jane{.email = "jane@mail.com", .password = "Passw0rd!"}; // aggregate initialization
 }
 ```
 
@@ -532,6 +532,7 @@ int main() {
 ```cpp
 User user{.password = "Passw0rd!", .email = "user@mail.com"};
 ```
+
 > error: ISO C++ requires field designators to be specified in declaration order ...
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
