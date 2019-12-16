@@ -19,6 +19,7 @@
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
 1. [Concurrency](#concurrency)
+1. [Designated Initializers](#designated)
 
 <a name="modules"></a>
 ## Modules
@@ -505,5 +506,33 @@ void Foo(Incrementable auto t);
   - `std::atomic_ref` provides atomic operations on a non-atomic objects
 
   > **Note**: If you use std::atomic_ref to access an object, all accesses to this object must use std::atomic_ref
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="designated"></a>
+## Designated Initializers
+
+:mag_right: **Example**:
+
+```cpp
+struct User {
+    std::string email;
+    std::string password;
+    int pin;
+};
+
+int main() {
+    User user{"user@mail.com", "Passw0rd!", 1234};
+    User user{.email = "user@mail.com", .password = "Passw0rd!"};
+}
+```
+
+> **Note**: All designators used in the expression must appear in the same order as the data members, e.g.
+
+```cpp
+User user{.password = "Passw0rd!", .email = "user@mail.com"};
+```
+
+> error: ISO C++ requires field designators to be specified in declaration order ...
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
