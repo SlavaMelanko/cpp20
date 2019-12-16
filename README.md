@@ -532,7 +532,6 @@ int main() {
 ```cpp
 User user{.password = "Passw0rd!", .email = "user@mail.com"};
 ```
-
 > error: ISO C++ requires field designators to be specified in declaration order ...
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
