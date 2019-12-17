@@ -20,6 +20,7 @@
 1. [constexpr](#constexpr)
 1. [Concurrency](#concurrency)
 1. [Designated Initializers](#designated)
+1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 
 <a name="modules"></a>
 ## Modules
@@ -447,9 +448,9 @@ void Foo(Incrementable auto t);
        std::vector<std::jthread> threads;
        for (uint32_t i = 0; i < threadsCount; ++i)
          threads.push_back([&, i] {
-	   data[i] = MakeData(i);
-	   done.count_down();
-	   DoMoreStuff();
+	     data[i] = MakeData(i);
+	     done.count_down();
+	     DoMoreStuff();
          });
        done.wait();
        ProcessData();
@@ -534,5 +535,48 @@ User user{.password = "Passw0rd!", .email = "user@mail.com"};
 ```
 
 > error: ISO C++ requires field designators to be specified in declaration order ...
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="spaceship"></a>
+## Spaceship (Three-Way Comparison) Operator <=>
+
+:mag_right: **Example**:
+
+Before:
+
+```cpp
+class Point {
+public:
+  friend bool operator==(const Point& a, const Point& b) { return a.x == b.x && a.y == b.y; }
+  friend bool operator< (const Point& a, const Point& b) { return a.x < b.x || (a.x == b.x && a.y < b.y); }
+  friend bool operator!=(const Point& a, const Point& b) { return !(a == b); }
+  friend bool operator<=(const Point& a, const Point& b) { return !(b < a); }
+  friend bool operator> (const Point& a, const Point& b) { return b < a; }
+  friend bool operator>=(const Point& a, const Point& b) { return !(a < b); }
+
+private:
+  double x, y;
+};
+```
+
+Now:
+
+```cpp
+#include <compare>
+
+class Point {
+public:
+  auto operator<=>(const Point&) const = default;
+
+private:
+  double x, y;
+};
+```
+
+> **Note**: `<compare>` header is responsible for populating the compiler with all of the comparison category types
+> necessary for the spaceship operator to return a type appropriate for our defaulted function.
+
+:paperclip: Standard library types (`vector`, `string`, `map`, `set`, ...) include support for `<=>`
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
