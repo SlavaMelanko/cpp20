@@ -21,6 +21,8 @@
 1. [Concurrency](#concurrency)
 1. [Designated Initializers](#designated)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
+1. [Range-Based `for` Loop Initializer](#forloop)
+1. [Non-Type Template Parameters](#templ)
 
 <a name="modules"></a>
 ## Modules
@@ -578,5 +580,36 @@ private:
 > necessary for the spaceship operator to return a type appropriate for our defaulted function.
 
 :paperclip: Standard library types (`vector`, `string`, `map`, `set`, ...) include support for `<=>`
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="forloop"></a>
+## Range-Based `for` Loop Initializer
+
+:mag_right: **Example**:
+
+```cpp
+for (const auto users = SelectActiveUsers(); const offer& user : users) {
+  // ...
+}
+```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="templ"></a>
+## Non-Type Template Parameters
+
+C++20 allows string literals for non-type template parameters.
+
+```cpp
+template<auto& s>
+void DoSomething() {
+  std::cout << s << std::endl;
+}
+
+int main() {
+  DoSomething<C++20>();
+}
+```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
