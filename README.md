@@ -23,6 +23,8 @@
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Range-Based `for` Loop Initializer](#forloop)
 1. [Non-Type Template Parameters](#templ)
+1. [`likely` and `unlikely` Attributes](#attributes)
+1. [Calendars and Timezones](#chrono)
 
 <a name="modules"></a>
 ## Modules
@@ -608,8 +610,110 @@ void DoSomething() {
 }
 
 int main() {
-  DoSomething<C++20>();
+  DoSomething<"C++20">();
 }
 ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="attributes"></a>
+## `likely` and `unlikely` Attributes
+
+Hints for the compiler to optomize certain branches.
+
+:mag_right: **Example**:
+
+```cpp
+switch (value) {
+  case 1:
+    // ...
+    break;
+  [[likely]] case 2:
+    // ...
+    break;
+  [[unlikely]] case 3:
+    // ...
+    break;
+}
+```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="chrono"></a>
+## Calendars and Timezones
+
+- Chrono is extended to support calendars and timezones. Only Gregorian calendar is supported.
+
+  Creating a year:
+
+  ```cpp
+  auto year1 = std::chrono::year{2020};
+  auto year2 = 2020y; // using chrono_literals
+  ```
+
+  > The same for months and days.
+
+  Creating full date:
+
+  ```cpp
+  std::chrono::year_month_day fullDate1{2019y, September, 18d};
+  auto fullDate2 = 2019y / September / 18d;
+  ```
+
+- New duration type aliases:
+
+  - `days`
+  - `weeks`
+  - `months`
+  - `years`
+
+- New clocks:
+
+  - `utc_clock` represents Coordinated Universal Time (UTC), measures time since
+    00:00:00 UTC, Thursday, 1 January 1970 (including leap seconds).
+
+  - `tai_clock` represents International Atomic Time (TAI), measures time since
+    00:00:00, 1 January 1958, and was offseted 10 seconds ahead of UTC at that date (does not include leap seconds).
+
+  - `gps_clock` represents Global Positioning System (GPS) time, measures time since
+    00:00:00, 6 January 1980 UTC (does not include leap seconds).
+
+  - `file_clock` - alias for the clock used for `std::filesystem::file_time_type`, epoch is unspecified.
+
+- New `system_clock`-related type aliases:
+
+  ```cpp
+  template<class Duration>
+  using sys_time = std::chrono::time_point<std::chrono::system_clock, Duration>;
+  
+  using sys_seconds = sys_time<std::chrono::seconds>;
+  using sys_days = sys_time<std::chrono::days>;
+  ```
+  
+- Date + Time:
+
+  ```cpp
+  auto timestamp = sys_days{2019y/September/18d} + 9h + 35m + 10s; // 2019-09-18 09:35:10 UTC
+  ```
+  
+- Timezone conversion:
+
+  - Conver UTC to Denver time:
+
+  ```cpp
+  std::chrono::zoned_time denver = {"America/Denver", timestamp};
+  ```
+  
+  - Construct a localtime in Denver:
+  
+  ```cpp
+  auto denver = std::chrono::zoned_time{"America/Denver", std::chrono::local_days{Wednesday[3]/September/2019} + 9h};
+  ```
+  
+  - Get current localtime:
+  
+  ```cpp
+  auto local = std::chrono::zoned_time{std::chrono::current_zone(), std::chrono::system_clock::now()};
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
