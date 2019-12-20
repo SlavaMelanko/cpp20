@@ -656,8 +656,10 @@ switch (value) {
   Creating full date:
 
   ```cpp
-  std::chrono::year_month_day fullDate1{2019y, September, 18d};
-  auto fullDate2 = 2019y / September / 18d;
+  std::chrono::year_month_day fullDate{2019y, September, 18d};
+  auto fullDate1 = 2019y/September/18d;
+  auto fullDate1 = 18d/September/2019y;
+  auto fullDate2 = September/18d/2019y;
   ```
 
 - New duration type aliases:
