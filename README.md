@@ -130,14 +130,14 @@ auto result = data
         | ranges::views::remove_if([](int i) { return i % 2 == 1; })
         | ranges::views::transform([](int i) { return std::to_string(i); });
 ```
-> result = ["2", "4", "6", "8", "10"]
+> **>_** result = ["2", "4", "6", "8", "10"]
 
 ```cpp
 std::vector<int> data{0, 1, 2, 3, 4, 5, 6};
 auto evens = data | ranges::views::filter([](auto i) { return i % 2 == 0; });
 std::cout << ranges::views::all(evens) << '\n';
 ```
-> [0, 2, 4, 6]
+> **>_** [0, 2, 4, 6]
 
 ### Actions
 
@@ -147,15 +147,15 @@ std::cout << ranges::views::all(evens) << '\n';
 std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
 data |= ranges::actions::sort | ranges::actions::unique;
 ```
-> result = [0, 1, 3, 4, 8]
+> **>_** result = [0, 1, 3, 4, 8]
 
 ```cpp
 std::vector<int> original{4, 3, 4, 1, 8, 0, 8};
 auto modified = original | ranges::copy | ranges::actions::sort | ranges::actions::unique;
 ```
-> original = [4,3,4,1,8,0,8]
+> **>_** original = [4,3,4,1,8,0,8]
 
-> modified = [0,1,3,4,8]
+> **>_** modified = [0,1,3,4,8]
 
 ### Algorithms
 
@@ -166,7 +166,7 @@ auto sequence = ranges::views::ints(1, 11)
   | ranges::views::transform([](const auto i) { return i * i; });
 const auto sum = ranges::accumulate(sequence, 0);
 ```
-> sum = 385
+> **>_** sum = 385
 
 :paperclip: Projection:
 
@@ -180,7 +180,7 @@ std::vector<Employee> employees = {{"Jason", 50}, {"Jane", 40}};
     
 ranges::sort(employees, {}, &Employee::age);
 ```
-> employees = {{"Jane", 40}, {"Jason", 50}}
+> **>_** employees = {{"Jane", 40}, {"Jason", 50}}
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
@@ -656,10 +656,24 @@ switch (value) {
   Creating full date:
 
   ```cpp
-  std::chrono::year_month_day fullDate{2019y, September, 18d};
-  auto fullDate1 = 2019y/September/18d;
-  auto fullDate1 = 18d/September/2019y;
-  auto fullDate2 = September/18d/2019y;
+  {
+    std::chrono::year_month_day date{2019y, September, 18d};
+  }
+  {
+    auto date = 2019y/September/18d; // 18d/September/2019y || September/18d/2019y
+  }
+  {
+    auto date = September/last/2019y;
+  } 
+  {
+    auto date = 31d/October/2019;
+    if (!date.ok()) {
+      date = std::chrono::sys_days{date};
+    }
+  }
+  {
+    auto date = Friday[2]/November/2019y;
+  }
   ```
 
 - New duration type aliases:
@@ -692,6 +706,10 @@ switch (value) {
   using sys_days = sys_time<std::chrono::days>;
   ```
   
+  ```cpp
+  auto now = system_clock::now();
+  ```
+  
 - Date + Time:
 
   ```cpp
@@ -703,7 +721,9 @@ switch (value) {
   - Conver UTC to Denver time:
 
   ```cpp
-  std::chrono::zoned_time denver = {"America/Denver", timestamp};
+  auto now = system_clock::now();
+  zoned_time current{current_zone(), now};
+  zoned_time denver{"America/Denver", now};
   ```
   
   - Construct a localtime in Denver:
@@ -717,5 +737,34 @@ switch (value) {
   ```cpp
   auto local = std::chrono::zoned_time{std::chrono::current_zone(), std::chrono::system_clock::now()};
   ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="span"></a>
+## `span`
+
+Provides a view over some continuous data:
+
+- Does not own the data
+
+- Never allocates/deallocates
+
+- Very cheap to copy, recommended pass by value (similar to `string_view`)
+
+- Does not support strides
+
+- Can be dynamic-szed and fixed-sized
+
+```cpp
+constexpr size_t length = 10;
+int data[length] = ...
+
+span<int, length> a{data}; // fixed-size
+
+span<int> b{data}; // dynamic-size
+span<int> b{data, length}; // dynamic-size too
+
+span<int, 20> a{data}; // compilation error
+```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
