@@ -25,6 +25,7 @@
 1. [Non-Type Template Parameters](#templ)
 1. [`likely` and `unlikely` Attributes](#attributes)
 1. [Calendars and Timezones](#chrono)
+1. [`span`](#span)
 
 <a name="modules"></a>
 ## Modules
