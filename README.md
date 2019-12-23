@@ -751,15 +751,13 @@ switch (value) {
   cout << format(locale("de_DE"), "{:%d.%m.%Y %T%z}\n", zoned_time{tz, tp});
   cout << format("{:%d.%m.%Y %T%z}\n", zoned_time{tz, floor<seconds>(tp)});
   ```
-  > **>_**
-
-  > 2019-11-14 12:13:14.123456 CET
-
-  > 14.11.2019 12:13:14.123556+0100
-
-  > 14.11.2019 12:13:14,123656+0100
-
-  > 14.11.2019 12:13:14
+  ```
+  **>_**
+  2019-11-14 12:13:14.123456 CET
+  14.11.2019 12:13:14.123556+0100
+  14.11.2019 12:13:14,123656+0100
+  14.11.2019 12:13:14
+  ```
 
   If you can `std::format` it, you can `std::chrono::parse` it back in,
   usually with the same formatting string
@@ -769,11 +767,10 @@ switch (value) {
   cin >> parse("%d.%m.%Y %T%z", tp);
   cout << tp << std::endl;
   ```
-  > **>_**
-
-  >  input: 14.11.2019 12:13:14.123556+0100
-
-  > output: 2019-11-14 11:13:14.123556
+  **>_** ```
+  input: 14.11.2019 12:13:14.123556+0100
+  output: 2019-11-14 11:13:14.123556
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
