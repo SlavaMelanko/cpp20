@@ -784,28 +784,62 @@ switch (value) {
 <a name="span"></a>
 ## `span`
 
-Provides a view over some continuous data:
+  Provides bounds-safe views for sequences of objects:
 
-- Does not own the data
+  - Does not own the data
 
-- Never allocates/deallocates
+  - Never allocates/deallocates
 
-- Very cheap to copy, recommended pass by value (similar to `string_view`)
+  - Very cheap to copy, recommended pass by value (similar to `string_view`)
 
-- Does not support strides
+  - Does not support strides
 
-- Can be dynamic-sized and fixed-sized
+  - Can be dynamic-sized and fixed-sized
 
-```cpp
-constexpr size_t length = 10;
-int data[length] = ...
+  ```cpp
+  constexpr size_t length = 10;
+  int data[length] = ...
 
-span<int, length> a{data}; // fixed-size
+  span<int, length> a{data}; // fixed-size
 
-span<int> b{data}; // dynamic-size
-span<int> b{data, length}; // dynamic-size too
+  span<int> b{data}; // dynamic-size
+  span<int> b{data, length}; // dynamic-size too
 
-span<int, 20> a{data}; // compilation error
-```
+  span<int, 20> a{data}; // compilation error
+  ```
+
+  Before:
+
+  ```cpp
+  void DoSomething(int* p, size_t size) {
+    std::sort(p, p + size);
+    for (size_t i = 0; i < size; ++i) {
+      p[i] += p[0];
+    }
+  }
+  // ...
+  std::vector<int> v;
+  DoSomething(v.data(), v.size());
+
+  int data[1024];
+  DoSomething(data, std::size(data));
+  ```
+
+  After:
+
+  ```cpp
+  void DoSomething(std::span<int> p) {
+    std2::sort(p);
+    for (int& v: p) {
+      v += p[0];
+    }
+  }
+  // ...
+  std::vector<int> v;
+  DoSomething(v);
+
+  int data[1024];
+  DoSomething(data);
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
