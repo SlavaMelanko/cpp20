@@ -808,6 +808,8 @@ switch (value) {
   span<int, 20> a{data}; // compilation error
   ```
 
+  :mag_right: **Example**:
+  
   Before:
 
   ```cpp
