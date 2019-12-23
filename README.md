@@ -794,7 +794,7 @@ Provides a view over some continuous data:
 
 - Does not support strides
 
-- Can be dynamic-szed and fixed-sized
+- Can be dynamic-sized and fixed-sized
 
 ```cpp
 constexpr size_t length = 10;
