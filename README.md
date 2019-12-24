@@ -26,6 +26,7 @@
 1. [`likely` and `unlikely` Attributes](#attributes)
 1. [Calendars and Timezones](#chrono)
 1. [`span`](#span)
+1. [Feature-Test Macros](#testmacro)
 
 <a name="modules"></a>
 ## Modules
@@ -827,7 +828,7 @@ switch (value) {
   DoSomething(data, std::size(data));
   ```
 
-  After:
+  Now:
 
   ```cpp
   void DoSomething(std::span<int> p) {
@@ -843,5 +844,37 @@ switch (value) {
   int data[1024];
   DoSomething(data);
   ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="testmacro"></a>
+## Feature-Test Macros
+
+Provides a simple and portable way to detect the presence of a compiler certain language and library features.
+
+:mag_right: **Example**
+
+```cpp
+#if __cpp_constexpr >= 201304
+#  define CONSTEXPR constexpr
+#else
+#  define CONSTEXPR inline
+#endif
+ 
+CONSTEXPR int bar(unsigned i) {
+#if __cpp_binary_literals
+  unsigned mask = 0b11000000;
+#else
+  unsigned mask = 0xC0;
+#endif
+  // ...
+}
+```
+
+:link: **Additional Links**
+
+- [Feature testing (C++20)](https://en.cppreference.com/w/cpp/feature_test)
+
+- [Feature Test Recommendations](https://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations)
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
