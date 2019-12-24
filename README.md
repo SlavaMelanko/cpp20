@@ -27,6 +27,7 @@
 1. [Calendars and Timezones](#chrono)
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
+1. [`<version>`](#version)
 
 <a name="modules"></a>
 ## Modules
@@ -874,7 +875,19 @@ CONSTEXPR int bar(unsigned i) {
 :link: **Additional Links**
 
 - [Feature testing (C++20)](https://en.cppreference.com/w/cpp/feature_test)
-
 - [Feature Test Recommendations](https://isocpp.org/std/standing-documents/sd-6-sg10-feature-test-recommendations)
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="version"></a>
+## `<version>`
+
+Supplies implementation-dependent information about the standard library:
+
+- Version number
+- Release date
+- Copyright notice
+- Additional implementation-defined information
+- Include the library feature-test macros
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
