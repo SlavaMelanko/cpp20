@@ -28,6 +28,7 @@
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
 1. [`<version>`](#version)
+1. [Immediate Functions, `consteval`](#consteval)
 
 <a name="modules"></a>
 ## Modules
@@ -889,5 +890,48 @@ Supplies implementation-dependent information about the standard library:
 - Copyright notice
 - Additional implementation-defined information
 - Include the library feature-test macros
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="consteval"></a>
+## Immediate Functions, `consteval`
+
+`consteval` functions always produce a constant at compile time, a non-constant result should be a compilation error.
+
+:mag_right: **Example**
+
+```cpp
+consteval auto InchToMm(double inch) {
+  return inch * 25.4;
+}
+
+const double inch = 6;
+const auto mm = InchToMm(inch); // ok, everything is constant
+
+double inch = 6;
+const auto mm = InchToMm(inch); // compilation error, not constant
+```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="constinit"></a>
+## `constinit`
+
+Forces constant initialization.
+
+:mag_right: **Example**
+
+```cpp
+const char* GetDynamicString() {
+  return "Dynamic init";
+}
+
+constexpr const char* GetString(bool constInit) {
+  return constInit ? "Const init" : GetDynamicString();
+}
+
+constinit const char* str = GetString(true); // ok
+constinit const char* str = GetString(false); // compilation error
+```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
