@@ -29,6 +29,7 @@
 1. [Feature-Test Macros](#testmacro)
 1. [`<version>`](#version)
 1. [Immediate Functions, `consteval`](#consteval)
+1. [`constinit`](#constinit)
 
 <a name="modules"></a>
 ## Modules
