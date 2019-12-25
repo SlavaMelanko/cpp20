@@ -28,7 +28,7 @@
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
 1. [`<version>`](#version)
-1. [Immediate Functions, `consteval`](#consteval)
+1. [`consteval`](#consteval)
 1. [`constinit`](#constinit)
 
 <a name="modules"></a>
@@ -895,23 +895,29 @@ Supplies implementation-dependent information about the standard library:
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="consteval"></a>
-## Immediate Functions, `consteval`
+## `consteval`
 
-`consteval` functions always produce a constant at compile time, a non-constant result should be a compilation error.
+`consteval` declares **immediate functions** that must produce a compile time constant expression,
+a non-constant result should be a compilation error.
 
 :mag_right: **Example**
 
 ```cpp
-consteval auto InchToMm(double inch) {
-  return inch * 25.4;
+consteval auto Square(int n) {
+    return n * n;
 }
 
-const double inch = 6;
-const auto mm = InchToMm(inch); // ok, everything is constant
+auto val = 10;
+auto mm = Square(val); // error: the value of 'val' is not usable in a constant expression
 
-double inch = 6;
-const auto mm = InchToMm(inch); // compilation error, not constant
+const auto val = 10;
+auto mm = Square(val); // ok: everything is constant
+
+constexpr auto val = 10;
+constexpr auto mm = Square(val); // ok
 ```
+
+:paperclip: In contrast, `constexpr` function may be evaluated at compile time and runtime, and need not produce a constant in all cases.
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
