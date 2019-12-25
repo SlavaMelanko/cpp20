@@ -903,21 +903,21 @@ a non-constant result should be a compilation error.
 :mag_right: **Example**
 
 ```cpp
-consteval auto Square(int n) {
-    return n * n;
+consteval auto Square(int number) {
+  return number * number;
 }
 
-auto val = 10;
-auto mm = Square(val); // error: the value of 'val' is not usable in a constant expression
+auto number = 10;
+auto value = Square(number); // error: the value of 'number' is not usable in a constant expression
 
-const auto val = 10;
-auto mm = Square(val); // ok: everything is constant
+const auto number = 10;
+auto value = Square(number); // ok: everything is constant
 
-constexpr auto val = 10;
-constexpr auto mm = Square(val); // ok
+constexpr auto number = 10;
+constexpr auto value = Square(number); // ok
 ```
 
-:paperclip: In contrast, `constexpr` function may be evaluated at compile time and runtime, and need not produce a constant in all cases.
+:paperclip: As a comparison, `constexpr` function may be evaluated at compile time and runtime, and need not produce a constant in all cases.
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
