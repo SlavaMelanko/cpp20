@@ -54,7 +54,7 @@ Advantages:
 
 - The order of `import` statements will not matter
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 ```cpp
 // hello.cpp/.cppm/.mpp
@@ -91,7 +91,7 @@ import <iostream>;
 - Implicitely turns the `iostream` header into module
 - Improves build throughput, as `iostream` will then processed only once
 
-:clipboard: **Structure**:
+:clipboard: **Structure**
 
   | Module (top to bottom) |
   | :---: |
@@ -114,7 +114,7 @@ that provides a nicer and easier to read syntax.
 
 > **Note**: all below examples were tested using [range-v3](https://github.com/ericniebler/range-v3) library.
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 ```cpp
 std::array<int, 5> data{2, 4, 5, 1, 3};
@@ -222,7 +222,7 @@ Coroutines might be used for:
 > **Note**: C++20 contains language additions to support coroutines, whereas
 > standard library does not include helper classes yet such as generators.
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 > **Note**: Below example was tested with [godbolt](https://godbolt.org/z/GUSdpQ) (x64 msvc v19.22)
 
@@ -256,7 +256,7 @@ int main() {
 
 :bulb: Requirements that can be attached to class templates and function templates to constraint the template arguments.
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 Concept definitions:
 
@@ -522,7 +522,7 @@ void Foo(Incrementable auto t);
 <a name="designated"></a>
 ## Designated Initializers
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 ```cpp
 struct User {
@@ -550,7 +550,7 @@ User user{.password = "Passw0rd!", .email = "user@mail.com"};
 <a name="spaceship"></a>
 ## Spaceship (Three-Way Comparison) Operator <=>
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 Before:
 
@@ -593,7 +593,7 @@ private:
 <a name="forloop"></a>
 ## Range-Based `for` Loop Initializer
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 ```cpp
 for (const auto users = SelectActiveUsers(); const offer& user : users) {
@@ -626,7 +626,7 @@ int main() {
 
 Hints for the compiler to optomize certain branches.
 
-:mag_right: **Example**:
+:mag_right: **Example**
 
 ```cpp
 switch (value) {
@@ -812,7 +812,7 @@ switch (value) {
   span<int, 20> a{data}; // compilation error
   ```
 
-  :mag_right: **Example**:
+  :mag_right: **Example**
   
   Before:
 
@@ -924,21 +924,25 @@ constexpr auto value = Square(number); // ok
 <a name="constinit"></a>
 ## `constinit`
 
-Forces constant initialization.
+`constinit` specifies that a variable must have a static initialization.
+
+`constinit` cannot be used together with `constexpr` or `consteval`.
 
 :mag_right: **Example**
 
 ```cpp
-const char* GetDynamicString() {
+const char* AllocateDynamicString() {
   return "Dynamic init";
 }
 
-constexpr const char* GetString(bool constInit) {
-  return constInit ? "Const init" : GetDynamicString();
+constexpr const char* GetString(bool isConstInit) {
+  return isConstInit ? "Const init" : AllocateDynamicString();
 }
 
 constinit const char* str = GetString(true); // ok
-constinit const char* str = GetString(false); // compilation error
+constinit const char* str = GetString(false); error: variable does not have a constant initializer
 ```
+
+:paperclip: `constinit` can only be applied to variables with static or thread storage duration. It does not make sense to apply it to other variables, as `constinit` is all about static initialization.
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
