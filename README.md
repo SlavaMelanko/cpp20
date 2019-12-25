@@ -940,7 +940,7 @@ constexpr const char* GetString(bool isConstInit) {
 }
 
 constinit const char* str = GetString(true); // ok
-constinit const char* str = GetString(false); error: variable does not have a constant initializer
+constinit const char* str = GetString(false); // error: variable does not have a constant initializer
 ```
 
 :paperclip: `constinit` can only be applied to variables with static or thread storage duration. It does not make sense to apply it to other variables, as `constinit` is all about static initialization.
