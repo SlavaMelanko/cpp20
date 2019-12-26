@@ -30,6 +30,7 @@
 1. [`<version>`](#version)
 1. [`consteval`](#consteval)
 1. [`constinit`](#constinit)
+1. [Class Enums and `using`](#enumnusing)
 
 <a name="modules"></a>
 ## Modules
@@ -944,5 +945,39 @@ constinit const char* str = GetString(false); // error: variable does not have a
 ```
 
 :paperclip: `constinit` can only be applied to variables with static or thread storage duration. It does not make sense to apply it to other variables, as `constinit` is all about static initialization.
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="enumnusing"></a>
+1. Class Enums and `using`
+
+:mag_right: **Example**
+
+Before
+
+```cpp
+enum class RgbColor { Red, Green, Blue };
+
+std::string_view ColorToString(const Color color) {
+  switch (color) {
+    case RgbColor::Red: return "Red";
+    case RgbColor::Green: return "Green";
+    case RgbColor::Blue: return "Blue";
+  }
+}
+```
+
+The necessary repetition of the `enum class` name reduces legibility by introducing noise in contexts where said name is obvious.
+
+```cpp
+std::string_view ColorToString(const Color color) {
+  switch (color) {
+    using enum RgbColor;
+    case Red: return "Red";
+    case Green: return "Green";
+    case Blue: return "Blue";
+  }
+}
+```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
