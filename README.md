@@ -31,6 +31,7 @@
 1. [`consteval`](#consteval)
 1. [`constinit`](#constinit)
 1. [Class Enums and `using`](#enumnusing)
+1. [Text Formatting](#stdformat)
 
 <a name="modules"></a>
 ## Modules
@@ -969,15 +970,30 @@ std::string_view ColorToString(const Color color) {
 
 The necessary repetition of the `enum class` name reduces legibility by introducing noise in contexts where said name is obvious.
 
+Now
+
 ```cpp
 std::string_view ColorToString(const Color color) {
   switch (color) {
-    using enum RgbColor;
+    using enum RgbColor; // introduce the enumerator identifiers into the local scope
     case Red: return "Red";
     case Green: return "Green";
     case Blue: return "Blue";
   }
 }
 ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="stdformat"></a>
+1. Text Formatting
+
+`std::format` provids a fast, simple and safe alternative to C stdio and C++ iostreams.
+
+```cpp
+std::cout << std::format("Hello, {}!", "world");
+```
+
+> **>_** Hello, world!
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
