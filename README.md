@@ -33,6 +33,7 @@
 1. [Class Enums and `using`](#enumnusing)
 1. [Text Formatting](#stdformat)
 1. [Math Constants](#math)
+1. [`std::source_location`](#source_location)
 
 <a name="modules"></a>
 ## Modules
@@ -1027,16 +1028,16 @@ Represents specific information about source code, such as line and column numbe
 ```cpp
 void Log(string_view message, const source_location& location = source_location::current())
 {
-    cout << "log: "
+    cout << "info: "
          << location.file_name() << ":"
          << location.line() << ": "
          << message << endl;
 }
 
-int main(int, char* []) {
-    Log("Hello");
+int main() {
+    Log("Log entry");
 }
 ```
-> **>_** log: ./example.cpp:18: Hello
+> **>_** info: ./example.cpp:18: Log entry
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
