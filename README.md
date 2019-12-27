@@ -32,6 +32,7 @@
 1. [`constinit`](#constinit)
 1. [Class Enums and `using`](#enumnusing)
 1. [Text Formatting](#stdformat)
+1. [Math Constant](#math)
 
 <a name="modules"></a>
 ## Modules
@@ -995,5 +996,22 @@ std::cout << std::format("Hello, {}!", "world");
 ```
 
 > **>_** Hello, world!
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="math"></a>
+1. Math Constant
+
+Following mathematical constant are defined:
+- `e`, `log2e`, `log10e`
+- `pi`, `inv_pi`, `inv_sqrtpi`
+- `ln2`, `ln10`
+- `sqrt2`, `sqrt3`, `inv_sqrt3`
+- `egamma`
+- `phi`
+
+:link: **Additional Links**
+
+- [Mathematical constants](https://en.cppreference.com/w/cpp/numeric/constants)
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
