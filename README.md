@@ -32,7 +32,7 @@
 1. [`constinit`](#constinit)
 1. [Class Enums and `using`](#enumnusing)
 1. [Text Formatting](#stdformat)
-1. [Math Constant](#math)
+1. [Math Constants](#math)
 
 <a name="modules"></a>
 ## Modules
@@ -951,7 +951,7 @@ constinit const char* str = GetString(false); // error: variable does not have a
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="enumnusing"></a>
-1. Class Enums and `using`
+## Class Enums and `using`
 
 :mag_right: **Example**
 
@@ -987,7 +987,7 @@ std::string_view ColorToString(const Color color) {
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="stdformat"></a>
-1. Text Formatting
+## Text Formatting
 
 `std::format` provids a fast, simple and safe alternative to C stdio and C++ iostreams.
 
@@ -1000,9 +1000,10 @@ std::cout << std::format("Hello, {}!", "world");
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="math"></a>
-1. Math Constant
+## Math Constants
 
 Following mathematical constant are defined:
+
 - `e`, `log2e`, `log10e`
 - `pi`, `inv_pi`, `inv_sqrtpi`
 - `ln2`, `ln10`
@@ -1013,5 +1014,29 @@ Following mathematical constant are defined:
 :link: **Additional Links**
 
 - [Mathematical constants](https://en.cppreference.com/w/cpp/numeric/constants)
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="source_location"></a>
+## `std::source_location`
+
+Represents specific information about source code, such as line and column numbers, file and function names.
+
+:mag_right: **Example**
+
+```cpp
+void Log(string_view message, const source_location& location = source_location::current())
+{
+    cout << "log: "
+         << location.file_name() << ":"
+         << location.line() << ": "
+         << message << endl;
+}
+
+int main(int, char* []) {
+    Log("Hello");
+}
+```
+> **>_** log: ./example.cpp:18: Hello
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
