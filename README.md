@@ -32,6 +32,7 @@
 1. [`constinit`](#constinit)
 1. [Class Enums and `using`](#enumnusing)
 1. [Text Formatting](#stdformat)
+1. [`char8_t`](#char8_t)
 1. [Math Constants](#math)
 1. [`std::source_location`](#source_location)
 
@@ -990,13 +991,39 @@ std::string_view ColorToString(const Color color) {
 <a name="stdformat"></a>
 ## Text Formatting
 
-`std::format` provids a fast, simple and safe alternative to C stdio and C++ iostreams.
+`std::format` provides a fast, simple and safe alternative to C stdio and C++ iostreams with pythonic string syntax.
 
 ```cpp
 std::cout << std::format("Hello, {}!", "world");
 ```
 
 > **>_** Hello, world!
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="char8_t"></a>
+## `char8_t`
+
+`char8_t` is a new fundamental type to capture UTF-8 data that
+
+- Never aliases with other types
+
+- Is always unsigned
+  ```cpp
+  cout << std::boolalpha
+    << is_same_v<char, char8_t> << ' '
+    << is_same_v<unsigned char, char8_t>;
+  ```
+  > **>_** false false
+
+- Can be overloaded upon
+  ```cpp
+  void print(std::u8string_view utf8View);
+  void print(std::string_view view);
+  
+  process("Hello, World!");
+  process(u8"Hello, 🌎!");
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
