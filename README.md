@@ -1016,6 +1016,12 @@ std::cout << std::format("Hello, {}!", "world");
 
 - Is always unsigned
 
+- Has the same size and alignment as `char` and `signed char`
+  ```cpp
+  cout << sizeof(char) << " == " << sizeof(signed char) << " == " << sizeof(char8_t);
+  ```
+  > **>_** 1 == 1 == 1
+
 - Can be overloaded upon
   ```cpp
   void print(std::u8string_view data);
