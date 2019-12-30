@@ -1006,9 +1006,7 @@ std::cout << std::format("Hello, {}!", "world");
 
 `char8_t` is a new fundamental type to capture UTF-8 data that
 
-- Never aliases with other types
-
-- Is always unsigned
+- Never aliases with other types because it is a distinct type
   ```cpp
   cout << std::boolalpha
     << is_same_v<char, char8_t> << ' '
@@ -1016,10 +1014,12 @@ std::cout << std::format("Hello, {}!", "world");
   ```
   > **>_** false false
 
+- Is always unsigned
+
 - Can be overloaded upon
   ```cpp
-  void print(std::u8string_view utf8View);
-  void print(std::string_view view);
+  void print(std::u8string_view data);
+  void print(std::string_view data);
   
   process("Hello, World!");
   process(u8"Hello, 🌎!");
