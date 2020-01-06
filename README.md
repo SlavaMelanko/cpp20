@@ -1096,8 +1096,8 @@ for (uint8_t number : {0, 0b00011100, 1}) {
   cout << "countr_zero(0b" << bitset<8>(number) << ") = " << countr_zero(number) << '\n';
 }
 ```
-> **>_**
   ```
+  >_
   countl_zero(0b00000000) = 8
   countr_zero(0b00000000) = 8
   countl_zero(0b00011100) = 3
