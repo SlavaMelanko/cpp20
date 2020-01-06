@@ -36,6 +36,7 @@
 1. [Math Constants](#math)
 1. [`std::source_location`](#source_location)
 1. [Bit Operations](#bits)
+1. [Small Standard Library Additions](#stdadditions)
 
 <a name="modules"></a>
 ## Modules
@@ -1081,7 +1082,7 @@ int main() {
 
 `<bit>` contains a set of global non-member functions to operate on bits
 
-- `rotl` & `rotr` - computes the result of bitwise left- & right-rotation
+- `rotl` and `rotr` - computes the result of bitwise left- & right-rotation
 - `countl_zero` counts the number of consecutive 0 bits, starting from most significant bit
 - `countl_one` counts the number of consecutive 1 bits, starting from most significant bit
 - `countr_zero` counts the number of consecutive 0 bits, starting from least significant bit
@@ -1105,5 +1106,16 @@ for (uint8_t number : {0, 0b00011100, 1}) {
   countl_zero(0b00000001) = 7
   countr_zero(0b00000001) = 0
   ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="stdadditions"></a>
+## Small Standard Library Additions
+
+- `starts_with` and `ends_with` for `basic_string`/`basic_string_view`
+- `contains` for associative containers
+- `remove`, `remove_if`, and `unique` for `list` and `forward_list` now return `size_type` (number of removed elements) insted of `void`
+- `shift_left` and `shift_right` added to `<algorithm>`
+- `midpoint` to calculates the midpoint of two numbers
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
