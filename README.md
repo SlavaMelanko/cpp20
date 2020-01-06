@@ -35,6 +35,7 @@
 1. [`char8_t`](#char8_t)
 1. [Math Constants](#math)
 1. [`std::source_location`](#source_location)
+1. [Bit Operations](#bits)
 
 <a name="modules"></a>
 ## Modules
@@ -1072,5 +1073,37 @@ int main() {
 }
 ```
 > **>_** info: ./example.cpp:18: Log entry
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="bits"></a>
+## Bit Operations
+
+`<bit>` contains a set of global non-member functions to operate on bits
+
+- `rotl` & `rotr` - computes the result of bitwise left- & right-rotation
+- `countl_zero` counts the number of consecutive 0 bits, starting from most significant bit
+- `countl_one` counts the number of consecutive 1 bits, starting from most significant bit
+- `countr_zero` counts the number of consecutive 0 bits, starting from least significant bit
+- `countr_one` counts the number of consecutive 1 bits, starting from least significant bit
+- `popcount` counts the number of 1 bits
+
+:mag_right: **Example**
+
+```cpp
+for (uint8_t number : {0, 0b00011100, 1}) {
+  cout << "countl_zero(0b" << bitset<8>(number) << ") = " << countl_zero(number) << '\n';
+  cout << "countr_zero(0b" << bitset<8>(number) << ") = " << countr_zero(number) << '\n';
+}
+```
+> **>_**
+  ```
+  countl_zero(0b00000000) = 8
+  countr_zero(0b00000000) = 8
+  countl_zero(0b00011100) = 3
+  countr_zero(0b00011100) = 2
+  countl_zero(0b00000001) = 7
+  countr_zero(0b00000001) = 0
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
