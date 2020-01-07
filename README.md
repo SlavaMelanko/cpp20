@@ -1123,7 +1123,8 @@ for (uint8_t number : {0, 0b00011100, 1}) {
 
 - `starts_with` and `ends_with` for `basic_string`/`basic_string_view`
 - `contains` for associative containers
-- `remove`, `remove_if`, and `unique` for `list` and `forward_list` now return `size_type` (number of removed elements) insted of `void`
+- `remove`, `remove_if`, and `unique` methods  for `list` and `forward_list` now return `size_type` (number of removed elements) insted of `void`
+- `erase` and `erase_if` algorithms equivalent to `c.erase(std::remove_if(c.begin(), c.end(), pred), c.end());` now
 - `shift_left` and `shift_right` added to `<algorithm>`
 - `midpoint` to calculates the midpoint of two numbers
 
