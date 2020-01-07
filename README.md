@@ -34,7 +34,7 @@
 1. [Text Formatting](#stdformat)
 1. [`char8_t`](#char8_t)
 1. [Math Constants](#math)
-1. [`std::source_location`](#source_location)
+1. [Source_Location](#source_location)
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 
@@ -1043,7 +1043,7 @@ Following mathematical constant are defined:
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="source_location"></a>
-## `std::source_location`
+## Source Location
 
 Represents specific information about source code, such as line and column numbers, file and function names.
 
@@ -1052,7 +1052,7 @@ Represents specific information about source code, such as line and column numbe
 ```cpp
 void Log(string_view message, const source_location& location = source_location::current())
 {
-    cout << "info: "
+    clog << "info: "
          << location.file_name() << ":"
          << location.line() << ": "
          << message << endl;
