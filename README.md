@@ -16,6 +16,7 @@
 1. [Ranges](#ranges)
 1. [Coroutines](#coroutines)
 1. [Concepts](#concepts)
+1. [Abbreviated Function Templates](#abfubctemp)
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
 1. [Concurrency](#concurrency)
@@ -301,6 +302,25 @@ void Foo(T t) requires Incrementable<T> && Decrementable<T>;
 ```cpp
 void Foo(Incrementable auto t);
 ```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="abfubctemp></a>
+## Abbreviated Function Templates
+
+`auto` is now allowed in function parameters
+
+```cpp
+auto Foo(auto param) { /* ... */ }
+```
+
+It is the same as
+
+```cpp
+template<typename T> auto Foo(T param) { /* ... */ }
+```
+
+> **Note**: `concept auto` allowed anywhere that `auto` was allowed before
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
