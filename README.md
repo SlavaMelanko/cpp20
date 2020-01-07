@@ -656,36 +656,25 @@ switch (value) {
 
 - Chrono is extended to support calendars and timezones. Only Gregorian calendar is supported.
 
-  Creating a year
-
-  ```cpp
-  auto year1 = std::chrono::year{2020};
-  auto year2 = 2020y; // using chrono_literals
-  ```
-
-  > The same for months and days.
-
   Creating full date
 
   ```cpp
-  {
     std::chrono::year_month_day date{2019y, September, 18d};
-  }
-  {
+  ```
+  ```cpp
     auto date = 2019y/September/18d; // 18d/September/2019y || September/18d/2019y
-  }
-  {
+  ```
+  ```cpp
     auto date = September/last/2019y;
-  } 
-  {
+  ```
+  ```cpp
     auto date = 31d/October/2019;
     if (!date.ok()) {
       date = std::chrono::sys_days{date};
     }
-  }
-  {
+  ```
+  ```cpp
     auto date = Friday[2]/November/2019y;
-  }
   ```
 
 - New duration type aliases
