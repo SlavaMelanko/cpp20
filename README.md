@@ -38,6 +38,7 @@
 1. [Source_Location](#source_location)
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
+1. [`bind_front`](#bind_front)
 
 <a name="modules"></a>
 ## Modules
@@ -384,7 +385,7 @@ template<typename T> auto Foo(T param) { /* ... */ }
   ```cpp
   template<typename F, typename... Args>
   auto DelayInvoke(F f, Args... args) {
-    return [f = std::move(f), args = std::move(args)...]() {
+    return [f = std::move(f), ...args = std::move(args)...]() { // ...args?
       return std::invoke(f, args...);
     };
   }
@@ -1127,5 +1128,33 @@ for (uint8_t number : {0, 0b00011100, 1}) {
 - `erase` and `erase_if` algorithms equivalent to `c.erase(std::remove_if(c.begin(), c.end(), pred), c.end());` now
 - `shift_left` and `shift_right` added to `<algorithm>`
 - `midpoint` to calculates the midpoint of two numbers
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="bind_front"></a>
+## `bind_front`
+
+`bind_front` function is designed to bound first arguments of the function to some wrapper.
+In other worlds `bind_front(f, bound_args...)(call_args...)` is equivalent to `std::invoke(f, bound_args..., call_args....)`.
+
+:mag_right: **Example**
+
+```cpp
+struct Strategy {
+    double calculate(double discount, double price) {
+        return price - ((discount / 100) * price);
+    }
+};
+
+unique_ptr<Strategy> CreateStrategy() {
+    return make_unique<Strategy>();
+}
+
+int main() {
+    auto apply20PercentDiscount = bind_front(&Strategy::calculate, CreateStrategy(), 20);
+    cout << apply20PercentDiscount(100);
+}
+```
+> **>_** 80
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
