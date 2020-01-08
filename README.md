@@ -1134,8 +1134,18 @@ for (uint8_t number : {0, 0b00011100, 1}) {
 <a name="bind_front"></a>
 ## `bind_front`
 
-`bind_front` function is designed to bound first arguments of the function to some wrapper.
-In other worlds `bind_front(f, bound_args...)(call_args...)` is equivalent to `std::invoke(f, bound_args..., call_args....)`.
+`bind_front` function is designed to bound first arguments of the function to some callable wrapper.
+In other worlds
+
+```cpp
+bind_front(f, bound_args...)(call_args...)
+```
+
+is equivalent to
+
+```cpp
+std::invoke(f, bound_args..., call_args....)
+```
 
 :mag_right: **Example**
 
