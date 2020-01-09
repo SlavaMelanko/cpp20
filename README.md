@@ -421,7 +421,7 @@ template<typename T> auto Foo(T param) { /* ... */ }
   ```
   > **Note**: A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
 
-- `std::string` and `std::vector` are now `constexpr`
+- `string`, `string_view`, `vector`, and `tuple` are now `constexpr` as well as `sort`, `all_of`, ... algorithms.
 
 - Also, `constexpr` functions can now:
   * use `dynamic_cast` and `typeid`
