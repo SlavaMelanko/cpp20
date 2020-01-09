@@ -941,7 +941,7 @@ constexpr auto value = Square(number); // ok
 <a name="constinit"></a>
 ## `constinit`
 
-`constinit` specifies that a variable must have a static initialization.
+`constinit` specifies that a global variable must have a static initialization.
 
 `constinit` cannot be used together with `constexpr` or `consteval`.
 
