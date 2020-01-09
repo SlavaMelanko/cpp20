@@ -685,6 +685,10 @@ int main() {
   ```cpp
   nodiscrad[["Ignoring a return value will permit memory leak"]] Window * Create();
   ```
+  
+- `no_unique_address`
+
+  Indicates that this data member need not have an address distinct from all other non-static data members of its class.
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
