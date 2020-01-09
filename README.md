@@ -24,7 +24,7 @@
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Range-Based `for` Loop Initializer](#forloop)
 1. [Non-Type Template Parameters](#templ)
-1. [`likely` and `unlikely` Attributes](#attributes)
+1. [Attributes](#attributes)
 1. [Calendars and Timezones](#chrono)
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
@@ -650,35 +650,41 @@ int main() {
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="attributes"></a>
-## `likely` and `unlikely` Attributes
+## Attributes
 
-Hints for the compiler to optomize certain branches.
+- `likely` and `unlikely`
 
-:mag_right: **Example**
+  Hints for the compiler to optomize certain branches.
 
-```cpp
-switch (value) {
-  case 1:
-    // ...
-    break;
-  [[likely]] case 2:
-    // ...
-    break;
-  [[unlikely]] case 3:
-    // ...
-    break;
-}
-```
+  ```cpp
+  switch (value) {
+    case 1:
+      // ...
+      break;
+    [[likely]] case 2:
+      // ...
+      break;
+    [[unlikely]] case 3:
+      // ...
+      break;
+  }
+  ```
 
-```cpp
-// ...
+  ```cpp
+  // ...
 
-if (err) [[unlikely]] {
-  return;
-}
+  if (err) [[unlikely]] {
+    return;
+  }
 
-// ...
-```
+  // ...
+  ```
+
+- `nodiscrad` with the reason
+
+  ```cpp
+  nodiscrad[["Ignoring a return value will permit memory leak"]] Window * Create();
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
