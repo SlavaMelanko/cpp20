@@ -670,6 +670,16 @@ switch (value) {
 }
 ```
 
+```cpp
+// ...
+
+if (err) [[unlikely]] {
+  return;
+}
+
+// ...
+```
+
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="chrono"></a>
