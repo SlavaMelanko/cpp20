@@ -688,7 +688,42 @@ int main() {
   
 - `no_unique_address`
 
-  Indicates that this data member need not have an address distinct from all other non-static data members of its class.
+  Indicates that if the member has an empty type, the compiler may optimise it to occupy no space.
+  If the member is not empty, any tail padding in it may be also reused to store other data members.
+  
+  ```cpp
+  struct X {
+    int i;
+    Empty e;
+  };
+   
+  struct Y {
+    int i;
+    [[no_unique_address]] Empty e;
+  };
+   
+  struct Z {
+    int i;
+    [[no_unique_address]] Empty e1, e2;
+  };
+
+  int main() {
+    // The size of any object of empty class type is at least 1.
+    cout << sizeof(Empty) << '\n';
+
+    // At least one more byte is needed to give e a unique address.
+    cout << sizeof(X) << '\n';
+
+    // Empty member optimized out.
+    cout << "sizeof(Y) == sizeof(int) == " << sizeof(int) << " is "
+        << std::boolalpha << (sizeof(Y) == sizeof(int)) << '\n';
+
+    // e1 and e2 cannot share the same address because they have the same type,
+    // even though they are marked with [[no_unique_address]]. 
+    // However, either may share address with c.
+    cout << "sizeof(Z) == " << sizeof(Z) << '\n';
+  }
+  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
