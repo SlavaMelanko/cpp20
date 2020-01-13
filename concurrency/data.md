@@ -1,4 +1,4 @@
-## Concurrency
+# Concurrency
 
 - A new thread class `std::jthread` that automatically joins thread in its destructor
 
@@ -109,4 +109,4 @@
 
   > **Note**: If you use std::atomic_ref to access an object, all accesses to this object must use std::atomic_ref
 
-<p align="right"><a href="../README.md#contents">:arrow_up: Back to Contents</a></p>
+<p align="right"><a href="../README.md#contents">:arrow_left: Back to Contents</a></p>
