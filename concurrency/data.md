@@ -16,24 +16,6 @@
   - `stop_callback` (analogous to `future::then`)
     - Mechanism for registering invocables to be run upon receiving a stop request
 
-  > **Note**: Cooperative cancellation was added for conditional variable methods
-  ```cpp
-  template<class Lock, class Predicate>
-  bool wait(Lock& lock, std::stop_token stoken, Predicate pred);
-
-  template<class Lock, class Rep, class Period, class Predicate>
-  bool wait_for(Lock& lock,
-                std::stop_token stoken,
-                const std::chrono::duration<Rep, Period>& rel_time,
-                Predicate pred);
-
-  template<class Lock, class Clock, class Duration, class Pred>
-  void wait_until(Lock& lock,
-                  std::stop_token stoken,
-                  const std::chrono::time_point<Clock, Duration>& timeout_time,
-                  Pred pred);
-  ```
-
   ```cpp
   void Sleep(const std::chrono::seconds seconds) {
     std::this_thread::sleep_for(seconds);
@@ -53,6 +35,24 @@
 
     t.request_stop();
   }
+  ```
+
+  > **Note**: Cooperative cancellation was added for conditional variable methods
+  ```cpp
+  template<class Lock, class Predicate>
+  bool wait(Lock& lock, std::stop_token stoken, Predicate pred);
+
+  template<class Lock, class Rep, class Period, class Predicate>
+  bool wait_for(Lock& lock,
+                std::stop_token stoken,
+                const std::chrono::duration<Rep, Period>& rel_time,
+                Predicate pred);
+
+  template<class Lock, class Clock, class Duration, class Pred>
+  void wait_until(Lock& lock,
+                  std::stop_token stoken,
+                  const std::chrono::time_point<Clock, Duration>& timeout_time,
+                  Pred pred);
   ```
 
 - New synchronization facilities:
