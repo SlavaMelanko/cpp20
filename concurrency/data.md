@@ -1,14 +1,38 @@
 # Concurrency
 
-- A new thread class `std::jthread` that automatically joins thread in its destructor
+- A new thread class `std::jthread` that automatically joins thread (if it is joinable)
+  in its destructor as well as supports cooperative cancellation.
 
 - Support for cooperative cancellation of threads:
 
-  - `std::stop_source` - class representing a request to stop thread execution
+  - `stop_source` (analogous to a promise)
+    - Producer of stop request
+    - Owns the shared state (if any)
 
-  - `std::stop_token` - an interface for actively checking for a stop request
+  - `stop_token` (analogous to future)
+    - Handle to a `stop_source`
+    - Query for stop requests, but can't make them (consumer only)
   
-  - `std::stop_callback` - an interface for your own cancellation mechanism
+  - `stop_callback` (analogous to `future::then`)
+    - Mechanism for registering invocables to be run upon receiving a stop request
+
+  > **Note**: Cooperative cancellation was added for conditional variable methods
+  ```cpp
+  template<class Lock, class Predicate>
+  bool wait(Lock& lock, std::stop_token stoken, Predicate pred);
+
+  template<class Lock, class Rep, class Period, class Predicate>
+  bool wait_for(Lock& lock,
+                std::stop_token stoken,
+                const std::chrono::duration<Rep, Period>& rel_time,
+                Predicate pred);
+
+  template<class Lock, class Clock, class Duration, class Pred>
+  void wait_until(Lock& lock,
+                  std::stop_token stoken,
+                  const std::chrono::time_point<Clock, Duration>& timeout_time,
+                  Pred pred);
+  ```
 
   ```cpp
   void Sleep(const std::chrono::seconds seconds) {
@@ -30,8 +54,6 @@
     t.request_stop();
   }
   ```
-  
-  > **Note**: `std::jthread` integrates with `std::stop_token` to support cooperative cancellation
 
 - New synchronization facilities:
 
