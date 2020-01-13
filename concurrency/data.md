@@ -1,6 +1,6 @@
 # Concurrency
 
-- A new thread class `std::jthread` that automatically joins thread (if it is joinable)
+- A new thread class `jthread` that automatically joins thread (if it is joinable)
   in its destructor as well as supports cooperative cancellation.
 
 - Support for cooperative cancellation of threads:
