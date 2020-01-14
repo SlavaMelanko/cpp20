@@ -107,9 +107,10 @@
   - **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
     - **counting** semaphore models a non-negative resource count
     - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
-    ```cpp
-    using binary_semaphore = counting_semaphore<1>;
-    ```
+
+      ```cpp
+      using binary_semaphore = counting_semaphore<1>;
+      ```
 
     ```cpp
     counting_semaphore<5> slots{5};
