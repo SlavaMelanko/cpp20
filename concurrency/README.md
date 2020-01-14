@@ -39,7 +39,7 @@ int main() {
 }
 ```
 
-> **Note**: Cooperative cancellation was added for conditional variable methods
+:paperclip: Cooperative cancellation was added for conditional variable methods as well
 
 ```cpp
 template<class Lock, class Predicate>
