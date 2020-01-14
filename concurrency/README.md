@@ -60,7 +60,7 @@
 
 ## New synchronization facilities
 
-  - **Latches**
+  ### Latches
 
     `latch` is a single-use counter that allows threads to wait for the count to reach zero.
 
@@ -83,7 +83,10 @@
      }
      ```
 
-  - **Barriers** - a sequence of phases, in each phase:
+  ### Barriers
+  
+  `barrier` is a sequence of phases, in each phase:
+
     - a number of threads block untill the requested number of threads arrive at the barries, then
     - a phase completion callback is executed
     - the thread counter is reset
@@ -104,10 +107,11 @@
     }
     ```
   
-  - **Semaphores** - lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
+  ### Semaphores
+
+  Semaphores is a lightweight synchronization primitives that can be used to implement any other synchronization concepts (mutex, latches, barries, ...). There are two types:
     - **counting** semaphore models a non-negative resource count
     - **binary** semaphore has only 1 slot, i.e. two possible states - free and not free
-
       ```cpp
       using binary_semaphore = counting_semaphore<1>;
       ```
