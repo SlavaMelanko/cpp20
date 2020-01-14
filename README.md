@@ -19,7 +19,7 @@
 1. [Abbreviated Function Templates](#abfubctemp)
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
-1. [Concurrency](concurrency/data.md)
+1. [Concurrency](concurrency/README.md)
 1. [Designated Initializers](#designated)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Range-Based `for` Loop Initializer](#forloop)
