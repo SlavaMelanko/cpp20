@@ -18,6 +18,7 @@ in its destructor as well as supports cooperative cancellation.
 - `stop_callback` (analogous to `future::then`)
   - Mechanism for registering invocables to be run upon receiving a stop request
 
+:mag_right:
 ```cpp
 void Sleep(const chrono::seconds seconds) {
   this_thread::sleep_for(seconds);
@@ -65,7 +66,8 @@ void wait_until(Lock& lock,
   `latch` is a single-use counter that allows threads to wait for the count to reach zero.
 
   > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
-    
+
+  :mag_right:
    ```cpp
    void Foo() {
      const uint16_t threadCount = ...
@@ -93,6 +95,7 @@ void wait_until(Lock& lock,
   - the next phase starts
   - thread can continue
 
+  :mag_right:
   ```cpp
   const uint16_t numberThreads = ...;
   void FinishTask() {}
@@ -116,6 +119,7 @@ void wait_until(Lock& lock,
     using binary_semaphore = counting_semaphore<1>;
     ```
 
+  :mag_right:
   ```cpp
   counting_semaphore<5> slots{5};
 
