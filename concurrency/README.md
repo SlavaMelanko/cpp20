@@ -62,26 +62,26 @@
 
   ### Latches
 
-    `latch` is a single-use counter that allows threads to wait for the count to reach zero.
+  `latch` is a single-use counter that allows threads to wait for the count to reach zero.
 
-    > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
+  > Threads block at a latch point, untill a given number of threads reach the latch point, at which point all threads are allowed to continue
     
-     ```cpp
-     void Foo() {
-       const uint16_t threadCount = ...
-       latch done{threadCount};
-       Data data[threadCount];
-       vector<jthread> threads;
-       for (uint32_t i = 0; i < threadsCount; ++i)
-         threads.push_back([&, i] {
-	     data[i] = MakeData(i);
-	     done.count_down();
-	     DoMoreStuff();
-         });
-       done.wait();
-       ProcessData();
-     }
-     ```
+   ```cpp
+   void Foo() {
+     const uint16_t threadCount = ...
+     latch done{threadCount};
+     Data data[threadCount];
+     vector<jthread> threads;
+     for (uint32_t i = 0; i < threadsCount; ++i)
+       threads.push_back([&, i] {
+         data[i] = MakeData(i);
+         done.count_down();
+         DoMoreStuff();
+       });
+     done.wait();
+     ProcessData();
+   }
+   ```
 
   ### Barriers
   
