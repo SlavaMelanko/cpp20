@@ -124,7 +124,7 @@ void wait_until(Lock& lock,
     DoSomething(); // at most 5 threads can be here
     slots.release();
   }
-    ```
+  ```
 
 ## Updates for `atomic`
 
