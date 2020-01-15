@@ -12,14 +12,16 @@
 
 # Contents
 
-1. [Modules](#modules)
+1. [Modules](modules/README.md)
+1. [Concurrency](concurrency/README.md)
+
+
 1. [Ranges](#ranges)
 1. [Coroutines](#coroutines)
 1. [Concepts](#concepts)
 1. [Abbreviated Function Templates](#abfubctemp)
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
-1. [Concurrency](concurrency/README.md)
 1. [Designated Initializers](#designated)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Range-Based `for` Loop Initializer](#forloop)
@@ -39,80 +41,6 @@
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
-
-<a name="modules"></a>
-## Modules
-
-:bulb: Module is a way to organize, encapsulate, and isolate your code.
-
-Advantages:
-
-- Better compilation times
-  > Modules are processed only once. Compare this with M headers which are included in N translation units.
-  > The combinatorial explosion means, that the header has to be parsed M*N times.
-
-- No need of header files
-  > Separation into interface and implementation files is possible but it is obsolete
-
-- No need for include guard
-
-- Preprocessor usage elimination
-
-- No need to invent unique names
-  > Same names in multiple modules will not clash
-
-- The order of `import` statements will not matter
-
-:mag_right: **Example**
-
-```cpp
-// hello.cpp/.cppm/.mpp
-export module hello;
-
-namespace hello {
-
-auto GetWelcomeMessage() {
-  return "Welcome to C++20!";
-}
-
-export auto SayWelcome() {
-  return GetWelcomeMessage();
-}
-
-} // namespace hello
-
-// main.cpp/.cppm/.mpp
-import hello;
-
-import <iostream>;
-
-int main() {
-  std::cout << hello::SayWelcome();
-}
-```
-
-:paperclip: You can import header files, e.g.
-
-```cpp
-import <iostream>;
-```
-
-- Implicitely turns the `iostream` header into module
-- Improves build throughput, as `iostream` will then processed only once
-
-:clipboard: **Structure**
-
-  | Module (top to bottom) |
-  | :---: |
-  | `module;` |
-  | preprocessor derictives only, e.g `#include <cassert>` |
-  | `export module name;` |
-  | `import ...;` |
-  | `...` |
-  | `module : private;` |
-  | `...` |
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="ranges"></a>
 ## Ranges

@@ -7,11 +7,11 @@ in its destructor as well as supports cooperative cancellation.
 
 ## Support for cooperative cancellation
 
-- `stop_source` (analogous to a promise)
+- `stop_source` (analogous to `promise`)
   - Producer of stop request
   - Owns the shared state (if any)
 
-- `stop_token` (analogous to future)
+- `stop_token` (analogous to `future`)
   - Handle to a `stop_source`
   - Query for stop requests, but can't make them (consumer only)
 
