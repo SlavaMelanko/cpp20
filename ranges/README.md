@@ -4,7 +4,7 @@
 It is additional (abstraction) layer on top of iterators
 that provides a nicer and easier to read syntax.
 
-> **Note**: all below examples were tested using [range-v3](https://github.com/ericniebler/range-v3) library.
+> **Note**: All below examples were tested using [range-v3](https://github.com/ericniebler/range-v3) library.
 
 ```cpp
 array<int, 5> data{2, 4, 5, 1, 3};
@@ -12,10 +12,10 @@ sort(begin(data), end(data)); // before
 ranges::sort(data) // now
 ```
 
-Ranges library is based on 3 core components:
-- Views
-- Actions
-- Algorithms
+Ranges library is based on 3 main components:
+- [Views](#Views)
+- [Actions](#actions)
+- [Algorithms](#Algorithms)
 
 ## Views
 
