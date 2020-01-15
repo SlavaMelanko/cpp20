@@ -24,8 +24,6 @@ void Sleep(const chrono::seconds seconds) {
 }
 
 int main() {
-  using namespace chrono_literals;
-
   jthread t{[](stop_token st) {
     while (!st.stop_requested()) {
       cout << "Working...\n";
@@ -62,14 +60,14 @@ void wait_until(Lock& lock,
 
   ### Latches
 
-  `latch` is a single-use counter that allows threads to wait for the count to reach zero.
+  `latch` is a counter that allows threads to wait for the count to reach zero.
 
   ```cpp
   void DoStuff() {
-    latch done{threadCount};
+    latch done{threadsCount};
 
     vector<jthread> threads;
-    for (uint32_t i = 0; i < threadsCount; ++i)
+    for (uint16_t i = 0; i < threadsCount; ++i)
       threads.push_back([&, i] {
         auto data = RequestData(i);
 
