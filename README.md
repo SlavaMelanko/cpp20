@@ -16,11 +16,11 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Modules](modules/README.md)
 1. [Ranges](ranges/README.md)
 1. [Coroutines](coroutines/README.md)
+1. [Concepts](concepts/README.md)
 1. [Concurrency](concurrency/README.md)
 
 # Old Contents
 
-1. [Concepts](#concepts)
 1. [Abbreviated Function Templates](#abfubctemp)
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
@@ -43,52 +43,6 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
-
-<a name="concepts"></a>
-## Concepts
-
-:bulb: Requirements that can be attached to class templates and function templates to constraint the template arguments.
-
-:mag_right: **Example**
-
-Concept definitions:
-
-```cpp
-template<typename T>
-concept Incrementable = requires(T t) { ++t; t++; };
-
-template <typename T>
-concept Integral = std::is_integral<T>::value;
-
-template<typename T>
-concept HasSize = requires(T t) {
-    { t.size() } -> std::convertible_to<std::size_t>;
-};
-```
-
-Usage: 
-
-- Constrained template parameters:
-```cpp
-template<Incrementable T>
-void Foo(T t);
-```
-- Requires clause:
-```cpp
-template<typename T> requires Incrementable<T> && Decrementable<T>
-void Foo(T t);
-```
-- Trailing requires clause:
-```cpp
-template<typename T>
-void Foo(T t) requires Incrementable<T> && Decrementable<T>;
-```
-- Placeholder syntax:
-```cpp
-void Foo(Incrementable auto t);
-```
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="abfubctemp"></a>
 ## Abbreviated Function Templates
