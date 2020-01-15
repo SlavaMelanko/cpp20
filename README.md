@@ -14,11 +14,11 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 # Contents
 
 1. [Modules](modules/README.md)
+1. [Ranges](ranges/README.md)
 1. [Concurrency](concurrency/README.md)
 
 # Old Contents
 
-1. [Ranges](#ranges)
 1. [Coroutines](#coroutines)
 1. [Concepts](#concepts)
 1. [Abbreviated Function Templates](#abfubctemp)
@@ -43,90 +43,6 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
-
-<a name="ranges"></a>
-## Ranges
-
-:bulb: Range is an object referring to a sequence of elements.
-It is additional (abstraction) layer on top of iterators
-that provides a nicer and easier to read syntax.
-
-> **Note**: all below examples were tested using [range-v3](https://github.com/ericniebler/range-v3) library.
-
-:mag_right: **Example**
-
-```cpp
-std::array<int, 5> data{2, 4, 5, 1, 3};
-std::sort(std::begin(data), std::end(data)); // before
-ranges::sort(data) // now
-```
-
-Ranges library is based on 3 core components:
-
-### Views
-
-  Ranges with 'lazy evaluation', non-owning, and non-mutating of elements,
-  with constant time for copying and moving
-
-```cpp
-std::vector<int> data{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-auto result = data
-        | ranges::views::remove_if([](int i) { return i % 2 == 1; })
-        | ranges::views::transform([](int i) { return std::to_string(i); });
-```
-> **>_** result = ["2", "4", "6", "8", "10"]
-
-```cpp
-std::vector<int> data{0, 1, 2, 3, 4, 5, 6};
-auto evens = data | ranges::views::filter([](auto i) { return i % 2 == 0; });
-std::cout << ranges::views::all(evens) << '\n';
-```
-> **>_** [0, 2, 4, 6]
-
-### Actions
-
- Ranges which are eagerly evaluated, mutating the data, and can be composed as views
-
-```cpp
-std::vector<int> data{4, 3, 4, 1, 8, 0, 8};
-data |= ranges::actions::sort | ranges::actions::unique;
-```
-> **>_** result = [0, 1, 3, 4, 8]
-
-```cpp
-std::vector<int> original{4, 3, 4, 1, 8, 0, 8};
-auto modified = original | ranges::copy | ranges::actions::sort | ranges::actions::unique;
-```
-> **>_** original = [4,3,4,1,8,0,8]
-
-> **>_** modified = [0,1,3,4,8]
-
-### Algorithms
-
-  All standard library algorithms accepting ranges instead of iterator pairs
-
-```cpp
-auto sequence = ranges::views::ints(1, 11)
-  | ranges::views::transform([](const auto i) { return i * i; });
-const auto sum = ranges::accumulate(sequence, 0);
-```
-> **>_** sum = 385
-
-:paperclip: Projection:
-
-```cpp
-struct Employee {
-  std::string firstName;
-  uint8_t age;
-};
-    
-std::vector<Employee> employees = {{"Jason", 50}, {"Jane", 40}};
-    
-ranges::sort(employees, {}, &Employee::age);
-```
-> **>_** employees = {{"Jane", 40}, {"Jason", 50}}
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="coroutines"></a>
 ## Coroutines
