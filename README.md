@@ -15,8 +15,8 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 
 1. [Modules](modules/README.md)
 1. [Ranges](ranges/README.md)
-1. [Concurrency](concurrency/README.md)
 1. [Coroutines](coroutines/README.md)
+1. [Concurrency](concurrency/README.md)
 
 # Old Contents
 
