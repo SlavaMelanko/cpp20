@@ -9,14 +9,14 @@ Advantages:
   > The combinatorial explosion means, that the header has to be parsed M * N times.
 
 - No need of header files
-  > Separation into interface and implementation files is possible but it is obsolete
+  > Separation into interface and implementation files is possible but it is obsolete.
 
 - No need for include guard
 
 - Preprocessor usage elimination
 
 - No need to invent unique names
-  > Same names in multiple modules will not clash
+  > Same names in multiple modules will not clash.
 
 - The order of `import` statements will not matter
 
@@ -67,4 +67,4 @@ import <iostream>;
   | `module : private;` |
   | `...` |
 
-<p align="right"><a href="#contents">:arrow_left: Back to Contents</a></p>
+<p align="right"><a href="../README.md#contents">:arrow_left: Back to Contents</a></p>
