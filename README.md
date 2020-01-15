@@ -6,7 +6,8 @@
 
 1. The idea of this overview is self education
 1. The main goal - keep it simple and short
-1. And it is primarily based on [CppPon 2019 talks](https://www.youtube.com/playlist?list=PLHTh1InhhwT6KhvViwRiTR7I5s09dLCSw)
+1. And it is primarily based on [CppCon 2019](https://www.youtube.com/playlist?list=PLHTh1InhhwT6KhvViwRiTR7I5s09dLCSw)
+and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvjc5yg3F1QqZgazKb) talks
 
 :warning: There is no guarantee that below theoretical and practical parts are correkt and up to date
 
