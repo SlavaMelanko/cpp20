@@ -82,6 +82,18 @@ void wait_until(Lock& lock,
   }
   ```
 
+  - Supports asynchronous arrival
+
+  - Single phase
+
+  - No thread identity
+
+    - Threads may arrive multiple times
+
+    - Any thread may wait on a latch
+
+  - No completion function
+
   ### Barriers
   
   `barrier` is a sequence of phases, in each phase:
@@ -105,6 +117,18 @@ void wait_until(Lock& lock,
     }
   }
   ```
+
+  - Supports asynchronous arrival
+
+  - Multi phase
+
+  - Thread identity
+
+    - A thread may arrive only once per phase
+
+    - Only a thread who has arrived may wait
+    
+  - Supports completion function
 
   ### Semaphores
 
