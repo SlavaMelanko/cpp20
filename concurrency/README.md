@@ -87,9 +87,7 @@ void wait_until(Lock& lock,
   - Single phase
 
   - No thread identity
-
     - Threads may arrive multiple times
-
     - Any thread may wait on a latch
 
   - No completion function
@@ -123,11 +121,9 @@ void wait_until(Lock& lock,
   - Multi phase
 
   - Thread identity
-
     - A thread may arrive only once per phase
-
     - Only a thread who has arrived may wait
-    
+
   - Supports completion function
 
   ### Semaphores
