@@ -25,7 +25,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Abbreviated Function Templates](#abfubctemp)
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
-1. [Designated Initializers](#designated)
+1. [Designated Initialiser](#designated)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Range-Based `for` Loop Initializer](#forloop)
 1. [Non-Type Template Parameters](#templ)
@@ -172,9 +172,7 @@ template<typename T> auto Foo(T param) { /* ... */ }
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="designated"></a>
-## Designated Initializers
-
-:mag_right: **Example**
+## Designated Initialiser
 
 ```cpp
 struct User {
@@ -189,13 +187,38 @@ int main() {
 }
 ```
 
-> **Note**: All designators used in the expression must appear in the same order as the data members, e.g.
+- Only for aggregate types
+
+  An aggregate is an array or a class with
+  - no user-declared or inherited constructors
+  - no private or protected non-static data members
+  - no virtual functions
+  - no virtual, private, or protected base classes
+
+  ```cpp
+  struct Widget {
+    Widget() = delete;
+  };
+
+  Widget w; // Error
+  Widget w{}; // OK in C++17! Will be error in C++20
+  ```
+
+- All designators used in the expression must appear in the same order as the data members, e.g.
 
 ```cpp
 User user{.password = "Passw0rd!", .email = "user@mail.com"};
 ```
 
 > error: ISO C++ requires field designators to be specified in declaration order ...
+
+- Also, cannot be mixed with regular initialisers:
+
+```cpp
+User jason{.email = "jason@mail.com", "Passw0rd!"};
+```
+
+> error: mixture of designated and non-designated initializers in the same initializer list ...
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
