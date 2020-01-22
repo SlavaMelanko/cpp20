@@ -19,7 +19,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Concepts](concepts/README.md)
 1. [Concurrency](concurrency/README.md)
 1. [Calendars and Timezones](chrono/README.md)
-1. [Designated Initialiser](#designated)
+1. [Designated Initializer](initialization/README.md)
 
 # Old Contents
 
@@ -43,61 +43,6 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
-
-<a name="designated"></a>
-## Designated Initialiser
-
-```cpp
-struct User {
-  std::string email;
-  std::string password;
-  int pin;
-};
-
-int main() {
-  User jason{"jason@mail.com", "Passw0rd!", 1234}; // good old struct initialisation
-  User jane{.email = "jane@mail.com", .password = "Passw0rd!"}; // designated initialisation
-}
-```
-
-- Only for aggregate types
-
-  An aggregate is an array or a class with
-
-  - no user-declared or inherited constructors
-
-  - no private or protected non-static data members
-
-  - no virtual functions
-
-  - no virtual, private, or protected base classes
-
-  ```cpp
-  struct Widget {
-    Widget() = delete;
-  };
-
-  Widget w; // Error
-  Widget w{}; // OK in C++17! Will be error in C++20
-  ```
-
-- All designators used in the expression must appear in the same order as the data members, e.g.
-
-```cpp
-User user{.password = "Passw0rd!", .email = "user@mail.com"};
-```
-
-> error: ISO C++ requires field designators to be specified in declaration order ...
-
-- Also, cannot be mixed with regular initialisers
-
-```cpp
-User user{.email = "user@mail.com", "Passw0rd!"};
-```
-
-> error: mixture of designated and non-designated initializers in the same initializer list ...
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="abfubctemp"></a>
 ## Abbreviated Function Templates
