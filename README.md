@@ -97,6 +97,7 @@ User user{.email = "user@mail.com", "Passw0rd!"};
 
 > error: mixture of designated and non-designated initializers in the same initializer list ...
 
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="abfubctemp"></a>
 ## Abbreviated Function Templates
@@ -222,8 +223,6 @@ template<typename T> auto Foo(T param) { /* ... */ }
   * contain `try/catch` blocks:
     - But `throw` statements are still not allowed
 	- `try/catch` blocks are no-ops when evaluated in a constant expression
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
