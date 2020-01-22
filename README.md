@@ -56,7 +56,7 @@ struct User {
 
 int main() {
   User jason{"jason@mail.com", "Passw0rd!", 1234}; // good old struct initialisation
-  User jane{.email = "jane@mail.com", .password = "Passw0rd!"}; // aggregate initialisation
+  User jane{.email = "jane@mail.com", .password = "Passw0rd!"}; // designated initialisation
 }
 ```
 
@@ -65,8 +65,11 @@ int main() {
   An aggregate is an array or a class with
 
   - no user-declared or inherited constructors
+
   - no private or protected non-static data members
+
   - no virtual functions
+
   - no virtual, private, or protected base classes
 
   ```cpp
@@ -86,7 +89,7 @@ User user{.password = "Passw0rd!", .email = "user@mail.com"};
 
 > error: ISO C++ requires field designators to be specified in declaration order ...
 
-- Also, cannot be mixed with regular initialisers:
+- Also, cannot be mixed with regular initialisers
 
 ```cpp
 User jason{.email = "jason@mail.com", "Passw0rd!"};
