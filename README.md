@@ -92,7 +92,7 @@ User user{.password = "Passw0rd!", .email = "user@mail.com"};
 - Also, cannot be mixed with regular initialisers
 
 ```cpp
-User jason{.email = "jason@mail.com", "Passw0rd!"};
+User user{.email = "user@mail.com", "Passw0rd!"};
 ```
 
 > error: mixture of designated and non-designated initializers in the same initializer list ...
