@@ -19,7 +19,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Concepts](concepts/README.md)
 1. [Concurrency](concurrency/README.md)
 1. [Calendars and Timezones](chrono/README.md)
-1. [Designated Initializer](initialization/README.md)
+1. [Initialization](initialization/README.md#contents)
 
 # Old Contents
 

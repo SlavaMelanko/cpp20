@@ -68,8 +68,6 @@ User user{.email = "user@mail.com", "Passw0rd!"};
 
 `constinit` cannot be used together with `constexpr` or `consteval`.
 
-:mag_right: **Example**
-
 ```cpp
 const char* AllocateDynamicString() {
   return "Dynamic init";
@@ -92,12 +90,12 @@ It does not make sense to apply it to other variables, as `constinit` is all abo
 ## Range-based `for` loop initializer
 
 ```cpp
-for (const auto& user : GetDatabase().selectActiveUsers()) { // maybe undefined behaviour
+for (const auto& user : GetDatabase().selectActiveUsers()) { // not good enough
   // ...
 }
 ```
 
-> `GetDatabase()` might returns a reference.
+> Maybe undefined behaviour because `GetDatabase()` might returns a reference.
 
 ```cpp
 {
