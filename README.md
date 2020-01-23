@@ -27,14 +27,12 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
-1. [Range-Based `for` Loop Initializer](#forloop)
 1. [Non-Type Template Parameters](#templ)
 1. [Attributes](#attributes)
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
 1. [`<version>`](#version)
 1. [`consteval`](#consteval)
-1. [`constinit`](#constinit)
 1. [Class Enums and `using`](#enumnusing)
 1. [Text Formatting](#stdformat)
 1. [`char8_t`](#char8_t)
@@ -211,19 +209,6 @@ private:
 > necessary for the spaceship operator to return a type appropriate for our defaulted function.
 
 :paperclip: Standard library types (`vector`, `string`, `map`, `set`, ...) include support for `<=>`
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="forloop"></a>
-## Range-Based `for` Loop Initializer
-
-:mag_right: **Example**
-
-```cpp
-for (const auto users = SelectActiveUsers(); const offer& user : users) {
-  // ...
-}
-```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
@@ -456,32 +441,6 @@ constexpr auto value = Square(number); // ok
 ```
 
 :paperclip: As a comparison, `constexpr` function may be evaluated at compile time and runtime, and need not produce a constant in all cases.
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="constinit"></a>
-## `constinit`
-
-`constinit` specifies that a global variable must have a static initialization.
-
-`constinit` cannot be used together with `constexpr` or `consteval`.
-
-:mag_right: **Example**
-
-```cpp
-const char* AllocateDynamicString() {
-  return "Dynamic init";
-}
-
-constexpr const char* GetString(bool isConstInit) {
-  return isConstInit ? "Const init" : AllocateDynamicString();
-}
-
-constinit const char* str = GetString(true); // ok
-constinit const char* str = GetString(false); // error: variable does not have a constant initializer
-```
-
-:paperclip: `constinit` can only be applied to variables with static or thread storage duration. It does not make sense to apply it to other variables, as `constinit` is all about static initialization.
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
