@@ -41,6 +41,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
+1. [Strucutre Binding](#structure_bind)
 
 <a name="abfubctemp"></a>
 ## Abbreviated Function Templates
@@ -648,3 +649,27 @@ int main() {
 > **>_** 80
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
+<a name="structure_bind"></a>
+## Strucutre Binding
+
+```cpp
+struct Result {
+  bool status;
+  std::string data;
+};
+
+Result Process();
+
+int main()
+{
+  auto [ok, data] = Process();
+  static [ok, data] = Process(); // ok in C++20
+  thread_local [ok, data] = Process(); // ok in C++20
+
+  auto success = [ok] { return ok == true; } // ok in C++20
+}
+```
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
