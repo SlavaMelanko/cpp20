@@ -1,5 +1,15 @@
 # Lambda Expression
 
+1. [Allow lambda capture `[=, this]`](#capture_this)
+1. [Templated lambda expression](#templated_expression)
+1. [Perfect forwarding](#perf_forward)
+1. [Allow pack expansion in lambda init-capture](#pack_expansion)
+1. [Lambdas (without captures) are default-constructiable and assignable](#construct)
+1. [Lambdas in unevaluated contexts](#unevaluated)
+
+<p align="right"><a href="../README.md#contents">:arrow_left: Back to Contents</a></p>
+
+<a name="capture_this"></a>
 ## Allow lambda capture `[=, this]`
 
 Since C++20, you need to capture `this` explicitly in case of using `[=]`, e.g.
@@ -9,6 +19,7 @@ Since C++20, you need to capture `this` explicitly in case of using `[=]`, e.g.
 - `[&]` -> `[&,  this]` - everything by reference
 - `[&]` -> `[&, *this]` - (this would be unusual)
 
+<a name="templated_expression"></a>
 ## Templated lambda expression
 
 Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
@@ -47,6 +58,7 @@ Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t)
   };
   ```
 
+<a name="perf_forward"></a>
 ## Perfect forwarding
 
 ```cpp
@@ -61,6 +73,7 @@ auto foo = []<typename ...T>(T&&... args) {
 };
 ```
 
+<a name="pack_expansion"></a>
 ## Allow pack expansion in lambda init-capture
 
 ```cpp
@@ -72,8 +85,10 @@ auto DelayInvoke(F f, Args... args) {
 }
 ```
 
+<a name="construct"></a>
 ## Lambdas (without captures) are default-constructiable and assignable
 
+<a name="unevaluated"></a>
 ## Lambdas in unevaluated contexts
 
 * Lambda as a member of a class
