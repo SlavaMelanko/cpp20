@@ -21,6 +21,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Calendars and Timezones](chrono/README.md)
 1. [Initialization](initialization/README.md#contents)
 1. [Lambda Expression](lambda/README.md)
+1. [Attributes](attributes/README.md)
 
 # Old Contents
 
@@ -28,7 +29,6 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [constexpr](#constexpr)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Non-Type Template Parameters](#templ)
-1. [Attributes](#attributes)
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
 1. [`<version>`](#version)
@@ -162,84 +162,6 @@ int main() {
   DoSomething<"C++20">();
 }
 ```
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="attributes"></a>
-## Attributes
-
-- `likely` and `unlikely`
-
-  Hints for the compiler to optomize certain branches.
-
-  ```cpp
-  switch (value) {
-    case 1:
-      // ...
-      break;
-    [[likely]] case 2:
-      // ...
-      break;
-    [[unlikely]] case 3:
-      // ...
-      break;
-  }
-  ```
-
-  ```cpp
-  // ...
-
-  if (err) [[unlikely]] {
-    return;
-  }
-
-  // ...
-  ```
-
-- `nodiscrad` with the reason
-
-  ```cpp
-  nodiscrad[["Ignoring a return value will permit memory leak"]] Window * Create();
-  ```
-  
-- `no_unique_address`
-
-  Indicates that if the member has an empty type, the compiler may optimise it to occupy no space.
-  If the member is not empty, any tail padding in it may be also reused to store other data members.
-  
-  ```cpp
-  struct X {
-    int i;
-    Empty e;
-  };
-   
-  struct Y {
-    int i;
-    [[no_unique_address]] Empty e;
-  };
-   
-  struct Z {
-    int i;
-    [[no_unique_address]] Empty e1, e2;
-  };
-
-  int main() {
-    // The size of any object of empty class type is at least 1.
-    cout << sizeof(Empty) << '\n';
-
-    // At least one more byte is needed to give e a unique address.
-    cout << sizeof(X) << '\n';
-
-    // Empty member optimized out.
-    cout << "sizeof(Y) == sizeof(int) == " << sizeof(int) << " is "
-        << std::boolalpha << (sizeof(Y) == sizeof(int)) << '\n';
-
-    // e1 and e2 cannot share the same address because they have the same type,
-    // even though they are marked with [[no_unique_address]]. 
-    // However, either may share address with c.
-    cout << "sizeof(Z) == " << sizeof(Z) << '\n';
-  }
-  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
