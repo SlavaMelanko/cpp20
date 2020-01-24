@@ -96,6 +96,8 @@ auto DelayInvoke(F f, Args... args) {
 <a name="construct"></a>
 ## Lambdas (without captures) are default-constructiable and assignable
 
+TODO:
+
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="unevaluated"></a>
