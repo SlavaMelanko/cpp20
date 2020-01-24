@@ -20,11 +20,11 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Concurrency](concurrency/README.md)
 1. [Calendars and Timezones](chrono/README.md)
 1. [Initialization](initialization/README.md#contents)
+1. [Lambda Expression](lambda/README.md)
 
 # Old Contents
 
 1. [Abbreviated Function Templates](#abfubctemp)
-1. [Lambda Expression](#lambda)
 1. [constexpr](#constexpr)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Non-Type Template Parameters](#templ)
@@ -56,77 +56,11 @@ It is the same as
 
 ```cpp
 template<typename T> auto Foo(T param) { /* ... */ }
+// or
+auto Foo = [](T param) { /* ... */ }
 ```
 
 > **Note**: `concept auto` allowed anywhere that `auto` was allowed before
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="lambda"></a>
-## Lambda Expression
-
-- Since C++20, you need to capture `this` explicitly in case of using `[=]`, e.g. `[=, this]`
-
-- Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t) { /* ... */ }`
-
-  * Retrieve type of parameters of generic lambdas to access static members/methods or nested aliases:
-
-  ```cpp
-  // Before
-  auto foo = [](const auto& value) {
-    using T = std::decay_t<decltype(value)>;
-    T valueCopy = value;
-    T::staticMethod();
-    using Alias = T::NestedAlias;
-  };
-
-  // Now
-  auto foo = []<typename T>(const T& value) {
-    T valueCopy = value;
-    T::staticMethod();
-    using Alias = T::NestedAlias;
-  };
-  ```
-
-  * Retrieve type of the element of containers:
-
-  ```cpp
-  // Before
-  auto foo = [](const auto& data) {
-    using T = typename std::decay_t<decltype(data)>::value_type;
-    // ...
-  };
-
-  // Now
-  auto foo = []<typename T>(const std::vector<T>& data) {
-    // ...
-  };
-  ```
-
-  * Perfect forwarding:
-
-  ```cpp
-  // Before
-  auto foo = [](auto&&... args) {
-    return bar(std::forward<decltype(args)>(args)...);
-  };
-
-  // Now
-  auto foo = []<typename ...T>(T&&... args) {
-    return bar(std::forward<T>(args)...);
-  };
-  ```
-
-  * Init-capture followed by an ellipsis:
-
-  ```cpp
-  template<typename F, typename... Args>
-  auto DelayInvoke(F f, Args... args) {
-    return [f = std::move(f), ...args = std::move(args)...]() { // ...args?
-      return std::invoke(f, args...);
-    };
-  }
-  ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
