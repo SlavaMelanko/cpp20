@@ -1,4 +1,4 @@
-# Lambda Expression
+# Contents
 
 1. [Allow lambda capture `[=, this]`](#capture_this)
 1. [Templated lambda expression](#templated_expression)
@@ -18,6 +18,8 @@ Since C++20, you need to capture `this` explicitly in case of using `[=]`, e.g.
 - `[=]` -> `[=, *this]` - everything by value
 - `[&]` -> `[&,  this]` - everything by reference
 - `[&]` -> `[&, *this]` - (this would be unusual)
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="templated_expression"></a>
 ## Templated lambda expression
@@ -58,6 +60,8 @@ Added possibility to use templated lambda expressions, e.g. `[]<typename T>(T t)
   };
   ```
 
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
 <a name="perf_forward"></a>
 ## Perfect forwarding
 
@@ -73,6 +77,8 @@ auto foo = []<typename ...T>(T&&... args) {
 };
 ```
 
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
 <a name="pack_expansion"></a>
 ## Allow pack expansion in lambda init-capture
 
@@ -85,8 +91,12 @@ auto DelayInvoke(F f, Args... args) {
 }
 ```
 
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
+
 <a name="construct"></a>
 ## Lambdas (without captures) are default-constructiable and assignable
+
+<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
 <a name="unevaluated"></a>
 ## Lambdas in unevaluated contexts
