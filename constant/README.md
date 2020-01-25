@@ -9,30 +9,30 @@
 
 - C++20 allows virtual functions to be declared `constexpr`
 
-```cpp
-struct Base {
-  virtual ~Base() noexcept = default;
-  virtual int foo() const noexcept = 0;
-};
+  ```cpp
+  struct Base {
+    virtual ~Base() noexcept = default;
+    virtual int foo() const noexcept = 0;
+  };
 
-struct Derived : public Base {
-  constexpr int foo() const noexcept override { return 2; };
-};
+  struct Derived : public Base {
+    constexpr int foo() const noexcept override { return 2; };
+  };
 
-int main() {
-  {
-    constexpr Derived derived;
-    constexpr auto value = derived.foo();
-    static_assert(value == 2);
+  int main() {
+    {
+      constexpr Derived derived;
+      constexpr auto value = derived.foo();
+      static_assert(value == 2);
+    }
+    {
+      std::unique_ptr<Base> base = std::make_unique<Derived>();
+      const auto value = base->foo();
+    }
   }
-  {
-    std::unique_ptr<Base> base = std::make_unique<Derived>();
-    const auto value = base->foo();
-  }
-}
-```
+  ```
 
-> **Note**: A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
+  > **Note**: A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
 
 - `string`, `string_view`, `vector`, and `tuple` are now `constexpr` as well as `sort`, `all_of`, ... algorithms
 
