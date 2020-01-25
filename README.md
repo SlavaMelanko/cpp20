@@ -22,22 +22,21 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Initialization](initialization/README.md#contents)
 1. [Lambda Expression](lambda/README.md)
 1. [Attributes](attributes/README.md)
+1. [Constant Expressions](constant/README.md)
 
 # Old Contents
 
 1. [Abbreviated Function Templates](#abfubctemp)
-1. [constexpr](#constexpr)
 1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
 1. [Non-Type Template Parameters](#templ)
 1. [`span`](#span)
 1. [Feature-Test Macros](#testmacro)
 1. [`<version>`](#version)
-1. [`consteval`](#consteval)
 1. [Class Enums and `using`](#enumnusing)
 1. [Text Formatting](#stdformat)
 1. [`char8_t`](#char8_t)
 1. [Math Constants](#math)
-1. [Source_Location](#source_location)
+1. [Source Location](#source_location)
 1. [Bit Operations](#bits)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
@@ -61,46 +60,6 @@ auto Foo = [](T param) { /* ... */ }
 ```
 
 > **Note**: `concept auto` allowed anywhere that `auto` was allowed before
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="constexpr"></a>
-## constexpr
-
-- C++20 allows virtual functions to be declared `constexpr`:
-  ```cpp
-  struct Base {
-    virtual ~Base() noexcept = default;
-    virtual int foo() const noexcept = 0;
-  };
-
-  struct Derived : public Base {
-    constexpr int foo() const noexcept override { return 2; };
-  };
-
-  int main() {
-    {
-      constexpr Derived derived;
-      constexpr auto value = derived.foo();
-      static_assert(value == 2);
-    }
-    {
-      std::unique_ptr<Base> base = std::make_unique<Derived>();
-      const auto value = base->foo();
-    }
-  }
-  ```
-  > **Note**: A `constexpr` virtual function can override a non-`constexpr` function and vice versa.
-
-- `string`, `string_view`, `vector`, and `tuple` are now `constexpr` as well as `sort`, `all_of`, ... algorithms.
-
-- Also, `constexpr` functions can now:
-  * use `dynamic_cast` and `typeid`
-  * do dynamic memory allocations and deallocations
-  * change the active member of a `union`
-  * contain `try/catch` blocks:
-    - But `throw` statements are still not allowed
-	- `try/catch` blocks are no-ops when evaluated in a constant expression
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
@@ -271,33 +230,6 @@ Supplies implementation-dependent information about the standard library:
 - Copyright notice
 - Additional implementation-defined information
 - Include the library feature-test macros
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="consteval"></a>
-## `consteval`
-
-`consteval` declares **immediate functions** that must produce a compile time constant expression,
-a non-constant result should be a compilation error.
-
-:mag_right: **Example**
-
-```cpp
-consteval auto Square(int number) {
-  return number * number;
-}
-
-auto number = 10;
-auto value = Square(number); // error: the value of 'number' is not usable in a constant expression
-
-const auto number = 10;
-auto value = Square(number); // ok: everything is constant
-
-constexpr auto number = 10;
-constexpr auto value = Square(number); // ok
-```
-
-:paperclip: As a comparison, `constexpr` function may be evaluated at compile time and runtime, and need not produce a constant in all cases.
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
@@ -528,4 +460,3 @@ int main()
 ```
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
