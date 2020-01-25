@@ -24,6 +24,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Attributes](attributes/README.md)
 1. [Constant Expressions](constant/README.md)
 1. [Bit Operations](bits/README.md)
+1. [Source Location](source/README.md)
 
 # Old Contents
 
@@ -37,7 +38,6 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Text Formatting](#stdformat)
 1. [`char8_t`](#char8_t)
 1. [Math Constants](#math)
-1. [Source Location](#source_location)
 1. [Small Standard Library Additions](#stdadditions)
 1. [`bind_front`](#bind_front)
 1. [Strucutre Binding](#structure_bind)
@@ -329,30 +329,6 @@ Following mathematical constant are defined:
 :link: **Additional Links**
 
 - [Mathematical constants](https://en.cppreference.com/w/cpp/numeric/constants)
-
-<p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
-
-<a name="source_location"></a>
-## Source Location
-
-Represents specific information about source code, such as line and column numbers, file and function names.
-
-:mag_right: **Example**
-
-```cpp
-void Log(string_view message, const source_location& location = source_location::current())
-{
-    clog << "info: "
-         << location.file_name() << ":"
-         << location.line() << ": "
-         << message << endl;
-}
-
-int main() {
-    Log("Log entry");
-}
-```
-> **>_** info: ./example.cpp:18: Log entry
 
 <p align="right"><a href="#contents">:arrow_up: Back to Contents</a></p>
 
