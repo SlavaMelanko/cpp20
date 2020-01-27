@@ -25,7 +25,7 @@ and [Meeting C++ 2019](https://www.youtube.com/playlist?list=PLRyNF2Y6sca27wjBvj
 1. [Constant Expressions](constant/README.md)
 1. [Bit Operations](bits/README.md)
 1. [Source Location](source/README.md)
-1. [Spaceship (Three-Way Comparison) Operator <=>](#spaceship)
+1. [Spaceship Operator](spaceship/README.md)
 
 # [Unstructured] Contents
 
